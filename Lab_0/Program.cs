@@ -4,10 +4,12 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Введите число: ");
+        Console.Write("Введите число: ");
         int number = Convert.ToInt32(Console.ReadLine());
 
-        if (number % 2 == 0)
+        bool isEven = number % 2 == 0;
+
+        if (isEven)
         {
             Console.WriteLine("Число четное");
         }
