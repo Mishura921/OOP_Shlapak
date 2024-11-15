@@ -10,6 +10,9 @@ public class Program
         // Проверяем, является ли число четным
         bool isEven = number % 2 == 0;
 
+        // Проверяем, является ли число палиндромом
+        bool isPalindrome = IsPalindrome(number);
+
         // Выводим результат
         if (isEven)
         {
@@ -19,5 +22,21 @@ public class Program
         {
             Console.WriteLine("Число нечетное");
         }
+
+        if (isPalindrome)
+        {
+            Console.WriteLine("Число палиндром");
+        }
+        else
+        {
+            Console.WriteLine("Число не палиндром");
+        }
+    }
+
+    private static bool IsPalindrome(int number)
+    {
+        string numString = number.ToString();
+        string reversedString = new string(numString.Reverse().ToArray());
+        return numString == reversedString;
     }
 }
