@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonsClassLibrary
 {
-    enum Language
+    public enum Language
     {
         /// <summary>
         /// Русский
