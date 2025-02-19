@@ -13,33 +13,33 @@ namespace PersonsClassLibrary
     {
         // Поля класса Person: определяем их как приватные, доступ к ним будем осуществлять с помощью методов
         /// <summary>
-        /// Имя
+        /// Имя.
         /// </summary>
         private string _name;
         /// <summary>
-        /// Фамилия
+        /// Фамилия.
         /// </summary>
         private string _surname;
         /// <summary>
-        /// Возраст
+        /// Возраст.
         /// </summary>
         private int _age;
         /// <summary>
-        /// Минимальный предусматриваемый возраст
+        /// Минимальный предусматриваемый возраст.
         /// </summary>
         private const int MinAge = 0;
         /// <summary>
-        /// Максимальный предусматриваемый возраст
+        /// Максимальный предусматриваемый возраст.
         /// </summary>
         private const int MaxAge = 120;
         /// <summary>
-        /// Гендер
+        /// Гендер.
         /// </summary>
         private Gender _gender;
 
         // Методы класса Person. Позволяютт получить доступ к приватным полям. Так реализуем инкапсуляцию. Безопасность
         /// <summary>
-        /// Вводимое имя
+        /// Вводимое имя.
         /// </summary>
         public string InputName
         {
@@ -57,7 +57,7 @@ namespace PersonsClassLibrary
             }
         }
         /// <summary>
-        /// Вводимая фамилия
+        /// Вводимая фамилия.
         /// </summary>
         public string InputSurname
         {
@@ -75,7 +75,7 @@ namespace PersonsClassLibrary
             }
         }
         /// <summary>
-        /// Передаваемый возраст
+        /// Передаваемое значение возраста.
         /// </summary>
         public int InputAge
         {
@@ -97,7 +97,7 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Передаваемый пол
+        /// Передаваемое значение пола.
         /// </summary>
         public Gender InputGender
         {
@@ -105,7 +105,7 @@ namespace PersonsClassLibrary
             set => _gender = value;
         }
         /// <summary>
-        /// Конструктор класса Person
+        /// Конструктор класса Person.
         /// </summary>
         public Person
             (string name, string surname, int age, Gender gender)
@@ -117,7 +117,7 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Валидация языка. Функция оределяет, какому языку соответствует переданная строка name
+        /// Валидация языка. Функция оределяет, какому языку соответствует переданная строка name.
         /// </summary>
         private static Language LanguageValidation(string name)
         {
@@ -150,7 +150,7 @@ namespace PersonsClassLibrary
             }
         }
         /// <summary>
-        /// Функция сравнивает, на одном ли языке введены имя и фамилия
+        /// Функция сравнивает, на одном ли языке введены имя и фамилия.
         /// </summary>
         private void NameSurnameValidation()
         {
@@ -167,14 +167,17 @@ namespace PersonsClassLibrary
             }
         }
         /// <summary>
-        /// Функция меняет первую букву на заглавную, оставляя остальные строчными. Прим.: иЛьЯ - > Илья
+        /// Функция меняет первую букву на заглавную, оставляя остальные строчными. Прим.: иЛьЯ - > Илья.
         /// </summary>
         private static string EditRegister(string word)
         {
             return CultureInfo.CurrentCulture.TextInfo.
                 ToTitleCase(word.ToLower());
         }
-
+        public string ObjectData()
+        {
+            return $"{InputName} {InputSurname}; Возраст - {InputAge}; Пол - {InputGender}";
+        }
     }
 } 
 
