@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace PersonsClassLibrary
 {
-    class Person
+    public class Person
     {
         // Поля класса Person: определяем их как приватные, доступ к ним будем осуществлять с помощью методов
         /// <summary>
@@ -121,6 +121,7 @@ namespace PersonsClassLibrary
         /// </summary>
         private static Language LanguageValidation(string name)
         {
+            name = name.Trim();
             var engLetters = new Regex(@"^[A-z]+(-[A-z])?[A-z]*$");
             var ruLetters = new Regex(@"^[А-я]+(-[А-я])?[А-я]*$");
 
@@ -174,9 +175,49 @@ namespace PersonsClassLibrary
             return CultureInfo.CurrentCulture.TextInfo.
                 ToTitleCase(word.ToLower());
         }
+        /// <summary>
+        /// Функция выводит информацию об экземпляре класса в соответствующем формате.
+        /// </summary>
         public string ObjectData()
         {
             return $"{InputName} {InputSurname}; Возраст - {InputAge}; Пол - {InputGender}";
+        }
+        /// <summary>
+        /// Функция генерирует человека со случайными параметрами имени, фамилии, возраста и пола.
+        /// </summary>
+        public static Person GetRandomPerson()
+        {
+            string[] maleNames = { "Gaius", "Winston", "Benito", "Vlad", "Pierre", "Clyde"};
+            string[] femaleNames = { "Cleopatra", "Elizabeth", "Mary", "Anne", "Marie ", "Bonnie"};
+            string[] surnames = { "Caesar", "Churchill", "Mussolini", "Drakula", "Curie", "Parker"};
+
+            Random random = new Random();
+
+            // Генерация пола
+            Gender tmpGender;
+            if (random.Next(2) == 0)
+            {
+                tmpGender = Gender.Male;
+            }
+            else
+            {
+                tmpGender = Gender.Female;
+            }
+            // Выбор имени осуществлять будем в зависимости от пола, а также фамилии и возраста
+            string tmpName;
+            if (tmpGender == Gender.Male)
+            {
+                tmpName = maleNames[random.Next(maleNames.Length)];
+            }
+            else
+            {
+                tmpName = femaleNames[random.Next(femaleNames.Length)];
+            }
+            // Здесь фамилия и возраст
+            string tmpSurname = surnames[random.Next(surnames.Length)];
+            int tmpAge = random.Next(MinAge, MaxAge);
+            
+            return new Person(tmpName, tmpSurname, tmpAge, tmpGender);
         }
     }
 } 
