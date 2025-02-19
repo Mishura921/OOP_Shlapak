@@ -9,15 +9,15 @@ namespace PersonsClassLibrary
     public enum Language
     {
         /// <summary>
-        /// Русский
+        /// Русский язык.
         /// </summary>
         Russian,
         /// <summary>
-        /// Английский
+        /// Английский язык.
         /// </summary>
         English,
         /// <summary>
-        /// Другой
+        /// Другой язык.
         /// </summary>
         Other
     }
