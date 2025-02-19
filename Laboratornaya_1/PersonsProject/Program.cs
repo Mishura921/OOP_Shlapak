@@ -1,2 +1,18 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using PersonsClassLibrary;
+
+namespace Lab1
+{
+    /// <summary>
+    /// Class Program.
+    /// </summary>
+    internal class Program
+    {
+        /// <summary>
+        /// Class Main.
+        /// </summary>
+        private static void Main(string[] args)
+        {
+
+        }
+    }
+}
