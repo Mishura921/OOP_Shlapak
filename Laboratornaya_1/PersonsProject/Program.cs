@@ -3,48 +3,90 @@ using System;
 
 namespace Lab1
 {
+    /// <summary>
+    /// Класс Program
+    /// </summary>
     internal class Program
     {
+        /// <summary>
+        /// Класс Main
+        /// </summary>
         private static void Main(string[] args)
         {
-            // Создаём 2 массива
-            Console.WriteLine("Нажмите любую клавишу, чтобы создать 2 cписка персон по 3 человека в каждом: \n");
+            // 'a' Создаём программно 2 массива - списка персон 
+            Console.WriteLine("'a' Нажмите любую клавишу, чтобы создать 2 cписка персон по 3 человека в каждом: \n");
             Console.ReadKey();
-            Console.WriteLine("\n");
+            Console.WriteLine();
             PersonList men = new PersonList();
             PersonList women = new PersonList();
             // Массив с актёрами
-            Person gosling = new Person ("Ryan", "Gosling", 44, Gender.Male);
             Person bale = new Person ("Christian", "Bale", 51, Gender.Male);
+            Person gosling = new Person ("Ryan", "Gosling", 44, Gender.Male);
             Person dafoe = new Person ("Willem", "Dafoe", 69, Gender.Male);
             // Массив с актриссами
             Person stone = new Person ("Emma", "Stone", 36, Gender.Female);
             Person aniston = new Person ("Jennifer", "Aniston", 56, Gender.Female);
             Person robbie = new Person ("Margot", "Robbie", 34, Gender.Female);
             // Раскидываем экземпляры по коллекциям
-            men.AddElement(gosling);
             men.AddElement(bale);
+            men.AddElement(gosling);
             men.AddElement(dafoe);
             women.AddElement(stone);
             women.AddElement(aniston);
             women.AddElement(robbie);
-            Console.WriteLine("Массивы созданы! Пункт 'a' выполнен! \n\n");
+            Console.WriteLine("\n\tМассивы созданы! Пункт 'a' выполнен! \n\n");
 
-            // Выводим содержимое списков
-            Console.WriteLine("Нажмите любую клавишу, чтобы вывести содержимое каждого списка на экран с соответствующими подписями списков: \n");
+            // 'b' Выводим содержимое списков
+            Console.WriteLine("'b' Нажмите любую клавишу, чтобы вывести содержимое каждого списка на экран с соответствующими подписями списков: \n");
             Console.ReadKey();
-            Console.WriteLine("\n");
-
-            Console.WriteLine("Список актёров: ");
-            men.PrintList();
-            Console.WriteLine("\n");
-            Console.WriteLine("Список актрисс: ");
+            Console.WriteLine("\n\tСписок актёров: ");
+            men.PrintList();;
+            Console.WriteLine("\n\tСписок актрисс: ");
             women.PrintList();
+            Console.WriteLine("\n\tСодержимое списков выведено! Пункт 'b' выполнен! \n\n");
 
-            Console.WriteLine("Содержимое списков выведено! Пункт 'b' выполнен! \n\n");
+            // 'c' Добавление нового человека в первый список
+            Console.WriteLine("'c' Нажмите любую клавишу, чтобы добавить нового человека в первый список: \n");
+            Console.ReadKey();
+            Person newActor = new Person("Tom", "Cruise", 62, Gender.Male);
+            men.AddElement(newActor);
+            Console.WriteLine($"\n\tСписок актёров пополняет {newActor.InputName} {newActor.InputSurname}!\n");
+            Console.WriteLine("\tОбновлённый список актёров: \n");
+            men.PrintList();
+            Console.WriteLine("\n\tНовый человек добавлен в первый список! Пункт 'c' выполнен! \n\n");
 
-            // Добавление нового человека в первый список
-            // Console.WriteLine("Нажмите любую клавишу, чтобы добавить нового человека в первый список \n");
+            // 'd' Копирование второго человека из первого списка в конец второго списка
+            Console.WriteLine("'d' Нажмите любую клавишу, чтобы скопировать второго человека из первого списка в конец второго списка: \n");
+            Console.ReadKey();
+            women.AddElement(men.GetElementByIndex(1));
+            Console.WriteLine($"\n\tК актриссам подсел {men.GetElementByIndex(1).InputName} {men.GetElementByIndex(1).InputSurname}!\n");
+            Console.WriteLine("\tПрежний список актёров: \n");
+            men.PrintList();
+            Console.WriteLine("\n\tОбновлённый список актрисс (и актёров)0))): \n");
+            women.PrintList();
+            Console.WriteLine("\n\tВторой человек из первого списка скопирован в конец второго списка! Пункт 'd' выполнен! \n\n");
+
+            // 'e' Удаление второго человека из первого списка
+            Console.WriteLine("'e' Нажмите любую клавишу, чтобы удалить второго человека из первого списка: \n");
+            Console.ReadKey();
+            men.DeleteElementByIndex(1);
+            Console.WriteLine($"\n\t{women.GetElementByIndex(3).InputName} {women.GetElementByIndex(3).InputSurname} покинул парней!\n");
+            Console.WriteLine("\tМужская компания: \n");
+            men.PrintList();
+            Console.WriteLine($"\n\tДевочки + {women.GetElementByIndex(3).InputName} {women.GetElementByIndex(3).InputSurname}: \n");
+            women.PrintList();
+            Console.WriteLine("\n\tВы потеряли Райана Гослинга, теперь он у актрисс! Второй человек из первого списка удалён! Пункт 'e' выполнен! \n\n");
+
+            // 'f' Очистка второго списка
+            Console.WriteLine("'f' Нажмите любую клавишу, чтобы очистить содержимое второго списка: \n");
+            Console.ReadKey();
+            women.ClearList();
+            Console.WriteLine($"\n\t{gosling.InputName} {gosling.InputSurname} ушёл с девочками!\n");
+            Console.WriteLine("\n\tМужская компания: \n");
+            men.PrintList();
+            Console.WriteLine("\n\tЖенская компания: \n");
+            women.PrintList();
+            Console.WriteLine("\n\tВторой список очищен! Пункт 'f' выполнен! \n\n");
         }
     }
 }
