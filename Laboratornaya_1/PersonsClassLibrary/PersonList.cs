@@ -8,5 +8,11 @@ namespace PersonsClassLibrary
 {
     class PersonList
     {
+        /// <summary>
+        /// Массив с людьми
+        /// </summary>
+        private Person[] _arrayOfPersons = new Person[0];
+      
     }
 }
+
