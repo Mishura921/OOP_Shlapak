@@ -9,19 +9,19 @@ namespace PersonsClassLibrary
     public enum Gender
     {
         /// <summary>
-        /// Женский
+        /// Женский пол.
         /// </summary>
         Female,
         /// <summary>
-        /// Мужской
+        /// Мужской пол.
         /// </summary>
         Male,
         /// <summary>
-        /// Другой
+        /// Другой пол.
         /// </summary>
         Other,
         /// <summary>
-        /// Неизвестно
+        /// Неизвестный пол.
         /// </summary>
         Unknown
     }
