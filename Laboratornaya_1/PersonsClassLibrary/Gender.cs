@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonsClassLibrary
 {
-    enum Gender
+    public enum Gender
     {
         /// <summary>
         /// Женский
