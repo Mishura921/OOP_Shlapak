@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace PersonsClassLibrary
 {
+    //TODO: XML
     public class PersonList
     {
+        //TODO: RSDN
         /// <summary>
         /// Список, содержащий экземпляры класса Person.
         /// </summary>
         private List<Person> peopleArray = new List<Person>();
+        
         /// <summary>
         /// Проверка индекса на вхождение в диапазон длины списка.
         /// </summary>
@@ -61,6 +64,7 @@ namespace PersonsClassLibrary
         {
             return peopleArray.IndexOf(person);
         }
+
         /// <summary>
         /// Подсчитывает количество элементов в коллекции.
         /// </summary>
@@ -75,6 +79,8 @@ namespace PersonsClassLibrary
         {
             peopleArray.Clear();
         }
+
+        //TODO: remove
         /// <summary>
         /// Возвращает элементы коллекции.
         /// </summary>

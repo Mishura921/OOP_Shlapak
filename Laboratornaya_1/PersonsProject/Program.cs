@@ -16,19 +16,23 @@ namespace Lab1
             
             
             // 'a' Создаём программно 2 массива - списка персон 
+            //TODO: RSDN
             Console.WriteLine("'a' Нажмите любую клавишу, чтобы создать 2 cписка персон по 3 человека в каждом: \n");
             Console.ReadKey();
             Console.WriteLine();
             PersonList men = new PersonList();
             PersonList women = new PersonList();
+
             // Массив с актёрами
             Person bale = new Person ("Christian", "Bale", 51, Gender.Male);
             Person gosling = new Person ("Ryan", "Gosling", 44, Gender.Male);
             Person dafoe = new Person ("Willem", "Dafoe", 69, Gender.Male);
+
             // Массив с актриссами
             Person stone = new Person ("Emma", "Stone", 36, Gender.Female);
             Person aniston = new Person ("Jennifer", "Aniston", 56, Gender.Female);
             Person robbie = new Person ("Margot", "Robbie", 34, Gender.Female);
+
             // Раскидываем экземпляры по коллекциям
             men.AddElement(bale);
             men.AddElement(gosling);
@@ -94,8 +98,8 @@ namespace Lab1
             Console.WriteLine("Нажмите любую клавишу, ввести данные: \n");
             Console.ReadKey();
             Console.WriteLine("\n\tВведите данные: \n");
-            //var inputPerson = Person.ReadPersonFromConsole();
-            //Console.WriteLine(inputPerson.ObjectData()); 
+            var inputPerson = InputPersonByConsole();
+            Console.WriteLine(inputPerson.ObjectData()); 
 
             // Проверка работы метода по созданию рандомных персонажей
             Console.WriteLine("Нажмите любую клавишу, чтобы сгенерировать персонажа: \n");

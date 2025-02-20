@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PersonsClassLibrary
+﻿namespace PersonsClassLibrary
 {
     /// <summary>
     /// Перечисление Gender.
@@ -15,6 +9,7 @@ namespace PersonsClassLibrary
         /// Женский пол.
         /// </summary>
         Female,
+
         /// <summary>
         /// Мужской пол.
         /// </summary>

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace PersonsClassLibrary
 {
+    //TODO: XML
     public class Person
     {
         // Поля класса Person: определяем их как приватные, доступ к ним будем осуществлять с помощью методов
@@ -16,27 +11,33 @@ namespace PersonsClassLibrary
         /// Имя.
         /// </summary>
         private string _name;
+
         /// <summary>
         /// Фамилия.
         /// </summary>
         private string _surname;
+
         /// <summary>
         /// Возраст.
         /// </summary>
         private int _age;
+
         /// <summary>
         /// Минимальный предусматриваемый возраст.
         /// </summary>
         private const int MinAge = 0;
+
         /// <summary>
         /// Максимальный предусматриваемый возраст.
         /// </summary>
         private const int MaxAge = 120;
+
         /// <summary>
         /// Гендер.
         /// </summary>
         private Gender _gender;
 
+        //TODO: rename Input
         // Методы класса Person. Позволяютт получить доступ к приватным полям. Так реализуем инкапсуляцию. Безопасность
         /// <summary>
         /// Вводимое имя.
@@ -74,6 +75,7 @@ namespace PersonsClassLibrary
                 }
             }
         }
+
         /// <summary>
         /// Передаваемое значение возраста.
         /// </summary>
@@ -84,7 +86,9 @@ namespace PersonsClassLibrary
             {
                 try
                 {
+                    //TODO: {}
                     if (value <= MinAge || value >= MaxAge)
+                        //TODO: RSDN
                         throw new IndexOutOfRangeException($"Возраст должен быть в диапазоне: [{MinAge} - {MaxAge}].");
 
                     _age = value;
@@ -96,6 +100,7 @@ namespace PersonsClassLibrary
             }
         }
 
+        //TODO: autoproperty
         /// <summary>
         /// Передаваемое значение пола.
         /// </summary>
@@ -104,22 +109,24 @@ namespace PersonsClassLibrary
             get => _gender;
             set => _gender = value;
         }
+
         /// <summary>
         /// Конструктор класса Person.
         /// </summary>
-        public Person
-            (string name, string surname, int age, Gender gender)
+        public Person(string name, string surname, int age, Gender gender)
         {
-            InputName = name; // this.name = name ???
+            InputName = name; 
             InputSurname = surname;
             InputAge = age;
             InputGender = gender;
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Person"/> class.
         /// </summary>
         public Person()
         { }
+
         /// <summary>
         /// Валидация языка. Функция оределяет, какому языку соответствует переданная строка name.
         /// </summary>
@@ -159,8 +166,8 @@ namespace PersonsClassLibrary
         /// </summary>
         private void NameSurnameValidation()
         {
-            if ((string.IsNullOrEmpty(InputName) == false)
-                && (string.IsNullOrEmpty(InputSurname) == false))
+            if (!string.IsNullOrEmpty(InputName)
+                && !string.IsNullOrEmpty(InputSurname))
             {
                 var nameLanguage = LanguageValidation(InputName);
                 var surnameLanguage = LanguageValidation(InputSurname);
@@ -179,11 +186,14 @@ namespace PersonsClassLibrary
             return CultureInfo.CurrentCulture.TextInfo.
                 ToTitleCase(word.ToLower());
         }
+
+        //TODO: rename
         /// <summary>
         /// Функция выводит информацию об экземпляре класса в соответствующем формате.
         /// </summary>
         public string ObjectData()
         {
+            //TODO: RSDN
             return $"{InputName} {InputSurname}; Возраст - {InputAge}; Пол - {InputGender}";
         }
         /// <summary>
@@ -191,12 +201,14 @@ namespace PersonsClassLibrary
         /// </summary>
         public static Person GetRandomPerson()
         {
+            //TODO: RSDN
             string[] maleNames = { "Gaius", "Winston", "Benito", "Vlad", "Pierre", "Clyde"};
             string[] femaleNames = { "Cleopatra", "Elizabeth", "Mary", "Anne", "Marie ", "Bonnie"};
             string[] surnames = { "Caesar", "Churchill", "Mussolini", "Drakula", "Curie", "Parker"};
 
             Random random = new Random();
 
+            //TODO: refactor ?:
             // Генерация пола
             Gender tmpGender;
             if (random.Next(2) == 0)
@@ -207,6 +219,8 @@ namespace PersonsClassLibrary
             {
                 tmpGender = Gender.Female;
             }
+
+            //TODO: refactor ?:
             // Выбор имени осуществлять будем в зависимости от пола, а также фамилии и возраста
             string tmpName;
             if (tmpGender == Gender.Male)
