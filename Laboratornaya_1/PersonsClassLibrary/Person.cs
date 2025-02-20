@@ -115,7 +115,11 @@ namespace PersonsClassLibrary
             InputAge = age;
             InputGender = gender;
         }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class.
+        /// </summary>
+        public Person()
+        { }
         /// <summary>
         /// Валидация языка. Функция оределяет, какому языку соответствует переданная строка name.
         /// </summary>
@@ -142,7 +146,7 @@ namespace PersonsClassLibrary
                     return Language.Russian;
                 }
 
-                throw new ArgumentException("Некорректный ввод, повторите!");
+                throw new ArgumentException("Некорректный ввод!");
             }
             catch (ArgumentException ex)
             {
@@ -163,7 +167,7 @@ namespace PersonsClassLibrary
 
                 if (nameLanguage != surnameLanguage)
                 {
-                    throw new FormatException("Имя и фамилия должны быть на одном языке");
+                    throw new FormatException("Имя и фамилия должны быть на одном языке!");
                 }
             }
         }

@@ -13,6 +13,8 @@ namespace Lab1
         /// </summary>
         private static void Main(string[] args)
         {
+            
+            
             // 'a' Создаём программно 2 массива - списка персон 
             Console.WriteLine("'a' Нажмите любую клавишу, чтобы создать 2 cписка персон по 3 человека в каждом: \n");
             Console.ReadKey();
@@ -87,6 +89,107 @@ namespace Lab1
             Console.WriteLine("\n\tЖенская компания: \n");
             women.PrintList();
             Console.WriteLine("\n\tВторой список очищен! Пункт 'f' выполнен! \n\n");
+
+            // Ввод данных с клавиатуры
+            Console.WriteLine("Нажмите любую клавишу, ввести данные: \n");
+            Console.ReadKey();
+            Console.WriteLine("\n\tВведите данные: \n");
+            //var inputPerson = Person.ReadPersonFromConsole();
+            //Console.WriteLine(inputPerson.ObjectData()); 
+
+            // Проверка работы метода по созданию рандомных персонажей
+            Console.WriteLine("Нажмите любую клавишу, чтобы сгенерировать персонажа: \n");
+            Console.ReadKey();
+            Console.Write("Рандомный персонаж...: \n");
+            var randomPerson = Person.GetRandomPerson();
+            Console.WriteLine(randomPerson.ObjectData() + "!");
+        }
+        
+        
+        /// <summary>
+        /// Method which allows to enter information by console.
+        /// </summary>
+        public static Person InputPersonByConsole()
+        {
+            var person = new Person();
+
+            var actionList = new List<(Action<string>, string)>
+            {
+                (
+                new Action<string>((string property) =>
+                {
+                    Console.Write($"Enter student {property}: ");
+                    person.InputName = Console.ReadLine();
+                }), "name"),
+
+                (new Action<string>((string property) =>
+                {
+                    Console.Write($"Enter student {property}: ");
+                    person.InputSurname = Console.ReadLine();
+                }), "surname"),
+
+                (new Action<string>((string property) =>
+                {
+                    Console.Write($"Enter student {property}: ");
+                    _ = int.TryParse(Console.ReadLine(), out int tmpAge);
+                    person.InputAge = tmpAge;
+                }), "age"),
+
+                (new Action<string>((string property) =>
+                {
+                    Console.Write
+                        ($"Enter student {property} (1 - Male or 2 - Female): ");
+                    _ = int.TryParse(Console.ReadLine(), out int tmpGender);
+                    if (tmpGender < 1 || tmpGender > 2)
+                    {
+                        throw new IndexOutOfRangeException
+                            ("Number must be in range [1; 2].");
+                    }
+
+                    var realGender = tmpGender == 1
+                        ? Gender.Male
+                        : Gender.Female;
+                    person.InputGender = realGender;
+                }), "gender")
+            };
+
+            foreach (var action in actionList)
+            {
+                ActionHandler(action.Item1, action.Item2);
+            }
+
+            return person;
+        }
+
+        /// <summary>
+        /// Method which is used for doing actions from the list.
+        /// </summary>
+        private static void ActionHandler(Action<string> action, string propertyName)
+        {
+            while (true)
+            {
+                try
+                {
+                    action.Invoke(propertyName);
+                    break;
+                }
+                catch (Exception exception)
+                {
+                    if (exception.GetType()
+                        == typeof(IndexOutOfRangeException)
+                        || exception.GetType() == typeof(FormatException)
+                        || exception.GetType() == typeof(ArgumentException))
+                    {
+                        Console.WriteLine($"Incorrect {propertyName}." +
+                        $" Error: {exception.Message}" +
+                        $"Please, enter the {propertyName} again.");
+                    }
+                    else
+                    {
+                        throw exception;
+                    }
+                }
+            }
         }
     }
 }

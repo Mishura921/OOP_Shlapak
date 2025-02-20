@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PersonsClassLibrary
 {
+    /// <summary>
+    /// Перечисление Language.
+    /// </summary>
     public enum Language
     {
         /// <summary>

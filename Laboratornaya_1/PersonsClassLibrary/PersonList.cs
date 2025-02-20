@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonsClassLibrary
 {
-    class PersonList
+    public class PersonList
     {
         /// <summary>
         /// Список, содержащий экземпляры класса Person.
@@ -82,7 +82,7 @@ namespace PersonsClassLibrary
         {
             if (peopleArray.Count == 0)
             {
-                Console.WriteLine("В коллекции отсутствуют элементы!");
+                Console.WriteLine("Список пуст!");
                 return;
             }
             foreach (Person person in peopleArray)

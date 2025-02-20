@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PersonsClassLibrary
 {
+    /// <summary>
+    /// Перечисление Gender.
+    /// </summary>
     public enum Gender
     {
         /// <summary>
@@ -15,14 +18,6 @@ namespace PersonsClassLibrary
         /// <summary>
         /// Мужской пол.
         /// </summary>
-        Male,
-        /// <summary>
-        /// Другой пол.
-        /// </summary>
-        Other,
-        /// <summary>
-        /// Неизвестный пол.
-        /// </summary>
-        Unknown
+        Male
     }
 }
