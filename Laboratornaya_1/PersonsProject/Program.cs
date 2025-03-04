@@ -250,7 +250,7 @@ namespace Lab1
         /// </summary>
         public static void PrintList(PersonList personList)
         {
-            if (personList.PeopleArray.Count == 0)
+            if (personList.Count == 0)
             {
                 Console.WriteLine("Список пуст!");
                 return;

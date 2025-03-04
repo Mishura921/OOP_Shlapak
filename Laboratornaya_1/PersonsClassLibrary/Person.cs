@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 
 namespace PersonsClassLibrary
 {
-    //TODO: XML+
     /// <summary>
     /// Класс, описывающий персонажей.
     /// </summary>
@@ -34,7 +33,6 @@ namespace PersonsClassLibrary
         /// </summary>
         private const int MaxAge = 120;
 
-        //TODO: rename Input+
         /// <summary>
         /// Вводимое имя.
         /// </summary>
@@ -83,10 +81,8 @@ namespace PersonsClassLibrary
             {
                 try
                 {
-                    //TODO: {} +
                     if (value <= MinAge || value >= MaxAge)
                     {
-                        //TODO: RSDN+
                         throw new IndexOutOfRangeException(
                             $"Возраст должен быть в диапазоне: " +
                             $"[{MinAge} - {MaxAge}]."
@@ -102,7 +98,6 @@ namespace PersonsClassLibrary
             }
         }
 
-        //TODO: autoproperty+
         /// <summary>
         /// Передаваемое значение пола.
         /// </summary>
@@ -162,6 +157,7 @@ namespace PersonsClassLibrary
             }
             catch (ArgumentException ex)
             {
+                //TODO: Remove
                 Console.WriteLine($"Ошибка: {ex.Message}");
                 return Language.Other;
             }
@@ -202,13 +198,11 @@ namespace PersonsClassLibrary
                 ToTitleCase(word.ToLower());
         }
 
-        //TODO: rename+
         /// <summary>
         /// Функция выводит информацию об экземпляре класса в соответствующем формате.
         /// </summary>
         public string Info()
         {
-            //TODO: RSDN+
             return $"{Name} {Surname}; Возраст - {Age}; " +
                    $"Пол - {Gender}";
         }
@@ -220,7 +214,6 @@ namespace PersonsClassLibrary
         /// <returns>Случайно сгенерированный человек.</returns>
         public static Person GetRandomPerson()
         {
-            //TODO: RSDN+
             string[] maleNames =
             {
                 "Gaius", "Winston", "Benito", 
@@ -241,13 +234,11 @@ namespace PersonsClassLibrary
 
             Random random = new Random();
 
-            //TODO: refactor ?: +
             // Генерация пола
             Gender tmpGender = random.Next(2) == 0 
                 ? Gender.Male 
                 : Gender.Female;
 
-            //TODO: refactor ?: +
             string tmpName = tmpGender == Gender.Male 
                 ? maleNames[random.Next(maleNames.Length)] 
                 : femaleNames[random.Next(femaleNames.Length)];

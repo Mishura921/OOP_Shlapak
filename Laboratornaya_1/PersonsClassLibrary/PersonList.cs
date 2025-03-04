@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PersonsClassLibrary
+﻿namespace PersonsClassLibrary
 {
-    //TODO: XML+
     /// <summary>
     /// Класс, содержащий массив персонажей
     /// </summary>
     public class PersonList
     {
-        //TODO: RSDN+
         /// <summary>
         /// Коллекция экземпляров класса Person, представляющая людей.
         /// </summary>
         private List<Person> _peopleArray = new List<Person>();
 
+        //TODO: encapsulation
         public List<Person> PeopleArray => _peopleArray;
 
         /// <summary>
@@ -36,8 +29,6 @@ namespace PersonsClassLibrary
             }
         }
 
-        // Методы над списком
-
         /// <summary>
         /// Функция для добавления человека в конец массива.
         /// </summary>
@@ -55,6 +46,7 @@ namespace PersonsClassLibrary
         {
             PeopleArray.Remove(person);
         }
+
         /// <summary>
         /// Метод, который находит человека в массиве по индексу.
         /// </summary>
@@ -65,6 +57,7 @@ namespace PersonsClassLibrary
             IsIndexValid(index);
             PeopleArray.RemoveAt(index);
         }
+
         /// <summary>
         /// Метод, который находит человека в массиве по индексу.
         /// </summary>
@@ -75,6 +68,7 @@ namespace PersonsClassLibrary
             IsIndexValid(index);
             return PeopleArray[index];
         }
+
         /// <summary>
         /// Метод, который возвращает индекс элемента в списке.
         /// </summary>
@@ -89,6 +83,7 @@ namespace PersonsClassLibrary
         /// Подсчитывает количество элементов в коллекции.
         /// </summary>
         public int Count => PeopleArray.Count;
+
         /// <summary>
         /// Очищает коллекцию. Не принимает на вход элементов.
         /// </summary>
@@ -96,8 +91,6 @@ namespace PersonsClassLibrary
         {
             PeopleArray.Clear();
         }
-
-        //TODO: remove+
     }
 }
 
