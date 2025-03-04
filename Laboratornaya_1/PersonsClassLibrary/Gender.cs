@@ -1,7 +1,7 @@
 ﻿namespace PersonsClassLibrary
 {
     /// <summary>
-    /// Перечисление Gender.
+    /// Возможные варианты выбора пола.
     /// </summary>
     public enum Gender
     {

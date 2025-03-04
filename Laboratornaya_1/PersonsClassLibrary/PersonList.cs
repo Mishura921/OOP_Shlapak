@@ -6,97 +6,98 @@ using System.Threading.Tasks;
 
 namespace PersonsClassLibrary
 {
-    //TODO: XML
+    //TODO: XML+
+    /// <summary>
+    /// Класс, содержащий массив персонажей
+    /// </summary>
     public class PersonList
     {
-        //TODO: RSDN
+        //TODO: RSDN+
         /// <summary>
-        /// Список, содержащий экземпляры класса Person.
+        /// Коллекция экземпляров класса Person, представляющая людей.
         /// </summary>
-        private List<Person> peopleArray = new List<Person>();
-        
+        private List<Person> _peopleArray = new List<Person>();
+
+        public List<Person> PeopleArray => _peopleArray;
+
         /// <summary>
-        /// Проверка индекса на вхождение в диапазон длины списка.
+        /// Метод, который проверяет корректность входного индекса.
         /// </summary>
+        /// <param name="index">Входной индекс.</param>
+        /// <exception cref="IndexOutOfRangeException">
+        /// Индекс выходит за пределы допустимого диапазона.
+        /// </exception>
         private void IsIndexValid(int index)
         {
-            if (index < 0 || index >= peopleArray.Count)
+            if (index < 0 || index >= PeopleArray.Count)
             {
                 throw new IndexOutOfRangeException
                     ("Индекс вне диапазона!");
             }
         }
+
         // Методы над списком
+
         /// <summary>
-        /// Добавляет элемент в коллекцию. Принимает на вход экземпляр класса Person.
+        /// Функция для добавления человека в конец массива.
         /// </summary>
+        /// <param name="person">Человек, которого добавляют.</param>
         public void AddElement(Person person)
         {
-            peopleArray.Add(person);
+            PeopleArray.Add(person);
         }
         /// <summary>
-        /// Удаляет элемент из коллекции. Принимает на вход экземпляр класса Person.
+        /// Метод, который удаляет человека.
         /// </summary>
+        /// <param name="person">Человек, которого удаляют.</param>
+        
         public void DeleteElement(Person person)
         {
-            peopleArray.Remove(person);
+            PeopleArray.Remove(person);
         }
         /// <summary>
-        /// Удаляет элемент коллекции по индексу. Принимает на вход индекс, по которому нужно найти и удалить элемент.
+        /// Метод, который находит человека в массиве по индексу.
         /// </summary>
+        /// <param name="index">Индекс человека в массиве.</param>
+        /// <returns>Человек из массива.</returns>
         public void DeleteElementByIndex(int index)
         {
             IsIndexValid(index);
-            peopleArray.RemoveAt(index);
+            PeopleArray.RemoveAt(index);
         }
         /// <summary>
-        /// Получает элемент коллекции по индексу. Принимает на вход индекс, по которому нужно найти и вернуть элемент.
+        /// Метод, который находит человека в массиве по индексу.
         /// </summary>
+        /// <param name="index">Индекс человека в массиве.</param>
+        /// <returns>Человек из массива.</returns>
         public Person GetElementByIndex(int index)
         {
             IsIndexValid(index);
-            return peopleArray[index];
+            return PeopleArray[index];
         }
         /// <summary>
-        /// Возвращает индекс элемента в списке. Принимает на вход элемент, по которому нужно найти и вернуть индекс.
+        /// Метод, который возвращает индекс элемента в списке.
         /// </summary>
+        /// <param name="index">Имя человека</param>
+        /// <returns>Индекс человека</returns>
         public int GetIndexElementFromList(Person person)
         {
-            return peopleArray.IndexOf(person);
+            return PeopleArray.IndexOf(person);
         }
 
         /// <summary>
         /// Подсчитывает количество элементов в коллекции.
         /// </summary>
-        public int CountElements()
-        {
-            return peopleArray.Count;
-        }
+        public int Count => PeopleArray.Count;
         /// <summary>
         /// Очищает коллекцию. Не принимает на вход элементов.
         /// </summary>
         public void ClearList()
         {
-            peopleArray.Clear();
+            PeopleArray.Clear();
         }
 
-        //TODO: remove
-        /// <summary>
-        /// Возвращает элементы коллекции.
-        /// </summary>
-        public void PrintList()
-        {
-            if (peopleArray.Count == 0)
-            {
-                Console.WriteLine("Список пуст!");
-                return;
-            }
-            foreach (Person person in peopleArray)
-            {
-                Console.WriteLine(person.ObjectData());
-            }
-
-        }
+        //TODO: remove+
     }
 }
 

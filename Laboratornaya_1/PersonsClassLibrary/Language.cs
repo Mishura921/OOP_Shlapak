@@ -1,7 +1,7 @@
 ﻿namespace PersonsClassLibrary
 {
     /// <summary>
-    /// Перечисление Language.
+    /// Варианты выбора языка.
     /// </summary>
     public enum Language
     {

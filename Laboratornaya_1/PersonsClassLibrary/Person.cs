@@ -3,10 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace PersonsClassLibrary
 {
-    //TODO: XML
+    //TODO: XML+
+    /// <summary>
+    /// Класс, описывающий персонажей.
+    /// </summary>
     public class Person
     {
-        // Поля класса Person: определяем их как приватные, доступ к ним будем осуществлять с помощью методов
         /// <summary>
         /// Имя.
         /// </summary>
@@ -32,17 +34,11 @@ namespace PersonsClassLibrary
         /// </summary>
         private const int MaxAge = 120;
 
-        /// <summary>
-        /// Гендер.
-        /// </summary>
-        private Gender _gender;
-
-        //TODO: rename Input
-        // Методы класса Person. Позволяютт получить доступ к приватным полям. Так реализуем инкапсуляцию. Безопасность
+        //TODO: rename Input+
         /// <summary>
         /// Вводимое имя.
         /// </summary>
-        public string InputName
+        public string Name
         {
             get => _name;
 
@@ -57,10 +53,11 @@ namespace PersonsClassLibrary
                 }
             }
         }
+
         /// <summary>
         /// Вводимая фамилия.
         /// </summary>
-        public string InputSurname
+        public string Surname
         {
             get => _surname;
 
@@ -79,17 +76,22 @@ namespace PersonsClassLibrary
         /// <summary>
         /// Передаваемое значение возраста.
         /// </summary>
-        public int InputAge
+        public int Age
         {
             get => _age;
             set
             {
                 try
                 {
-                    //TODO: {}
+                    //TODO: {} +
                     if (value <= MinAge || value >= MaxAge)
-                        //TODO: RSDN
-                        throw new IndexOutOfRangeException($"Возраст должен быть в диапазоне: [{MinAge} - {MaxAge}].");
+                    {
+                        //TODO: RSDN+
+                        throw new IndexOutOfRangeException(
+                            $"Возраст должен быть в диапазоне: " +
+                            $"[{MinAge} - {MaxAge}]."
+                        );
+                    }
 
                     _age = value;
                 }
@@ -100,36 +102,37 @@ namespace PersonsClassLibrary
             }
         }
 
-        //TODO: autoproperty
+        //TODO: autoproperty+
         /// <summary>
         /// Передаваемое значение пола.
         /// </summary>
-        public Gender InputGender
-        {
-            get => _gender;
-            set => _gender = value;
-        }
+        public Gender Gender { get; set; }
 
         /// <summary>
-        /// Конструктор класса Person.
+        /// Конструктор персонажа
         /// </summary>
+        /// <param name="name">Имя.</param>
+        /// <param name="surname">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
         public Person(string name, string surname, int age, Gender gender)
         {
-            InputName = name; 
-            InputSurname = surname;
-            InputAge = age;
-            InputGender = gender;
+            Name = name; 
+            Surname = surname;
+            Age = age;
+            Gender = gender;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Person"/> class.
+        /// Инициализирует новый экземпляр класса <see cref="Person"/>.
         /// </summary>
         public Person()
         { }
 
         /// <summary>
-        /// Валидация языка. Функция оределяет, какому языку соответствует переданная строка name.
+        /// Функция определяет, какому языку соответствует переданная строка name.
         /// </summary>
+        /// <param name="name">String.</param>
         private static Language LanguageValidation(string name)
         {
             name = name.Trim();
@@ -140,7 +143,9 @@ namespace PersonsClassLibrary
             {
                 if (string.IsNullOrEmpty(name))
                 {
-                    throw new ArgumentException("Имя не может являться null или быть пустым!");
+                    throw new ArgumentException(
+                        "Имя не может являться " +
+                        "null или быть пустым!");
                 }
 
                 if (engLetters.IsMatch(name))
@@ -161,77 +166,91 @@ namespace PersonsClassLibrary
                 return Language.Other;
             }
         }
+
         /// <summary>
-        /// Функция сравнивает, на одном ли языке введены имя и фамилия.
+        /// Сравнение языка в фамилии и имени
         /// </summary>
+        /// <exception cref="FormatException">
+        /// Фамилия и имя - на одном языке!
+        /// </exception>
         private void NameSurnameValidation()
         {
-            if (!string.IsNullOrEmpty(InputName)
-                && !string.IsNullOrEmpty(InputSurname))
+            if (!string.IsNullOrEmpty(Name)
+                && !string.IsNullOrEmpty(Surname))
             {
-                var nameLanguage = LanguageValidation(InputName);
-                var surnameLanguage = LanguageValidation(InputSurname);
+                var nameLanguage = LanguageValidation(Name);
+                var surnameLanguage = LanguageValidation(Surname);
 
                 if (nameLanguage != surnameLanguage)
                 {
-                    throw new FormatException("Имя и фамилия должны быть на одном языке!");
+                    throw new FormatException(
+                        "Имя и фамилия должны " +
+                        "быть на одном языке!"
+                    );
                 }
             }
         }
+
         /// <summary>
-        /// Функция меняет первую букву на заглавную, оставляя остальные строчными. Прим.: иЛьЯ - > Илья.
+        /// Преобразует первую букву слова в заглавную, а остальные — в строчные.
         /// </summary>
+        /// <param name="word">Имя или фамилия человека.</param>
+        /// <returns>Изменённое имя или фамилия.</returns>
         private static string EditRegister(string word)
         {
             return CultureInfo.CurrentCulture.TextInfo.
                 ToTitleCase(word.ToLower());
         }
 
-        //TODO: rename
+        //TODO: rename+
         /// <summary>
         /// Функция выводит информацию об экземпляре класса в соответствующем формате.
         /// </summary>
-        public string ObjectData()
+        public string Info()
         {
-            //TODO: RSDN
-            return $"{InputName} {InputSurname}; Возраст - {InputAge}; Пол - {InputGender}";
+            //TODO: RSDN+
+            return $"{Name} {Surname}; Возраст - {Age}; " +
+                   $"Пол - {Gender}";
         }
+
         /// <summary>
-        /// Функция генерирует человека со случайными параметрами имени, фамилии, возраста и пола.
+        /// Генерирует объект человека со случайными параметрами: имени, фамилии, возраста
+        /// и пола.
         /// </summary>
+        /// <returns>Случайно сгенерированный человек.</returns>
         public static Person GetRandomPerson()
         {
-            //TODO: RSDN
-            string[] maleNames = { "Gaius", "Winston", "Benito", "Vlad", "Pierre", "Clyde"};
-            string[] femaleNames = { "Cleopatra", "Elizabeth", "Mary", "Anne", "Marie ", "Bonnie"};
-            string[] surnames = { "Caesar", "Churchill", "Mussolini", "Drakula", "Curie", "Parker"};
+            //TODO: RSDN+
+            string[] maleNames =
+            {
+                "Gaius", "Winston", "Benito", 
+                "Vlad", "Pierre", "Clyde"
+            };
+
+            string[] femaleNames =
+            {
+                "Cleopatra", "Elizabeth", "Mary", 
+                "Anne", "Marie", "Bonnie"
+            };
+
+            string[] surnames =
+            {
+                "Caesar", "Churchill", "Mussolini", 
+                "Drakula", "Curie", "Parker"
+            };
 
             Random random = new Random();
 
-            //TODO: refactor ?:
+            //TODO: refactor ?: +
             // Генерация пола
-            Gender tmpGender;
-            if (random.Next(2) == 0)
-            {
-                tmpGender = Gender.Male;
-            }
-            else
-            {
-                tmpGender = Gender.Female;
-            }
+            Gender tmpGender = random.Next(2) == 0 
+                ? Gender.Male 
+                : Gender.Female;
 
-            //TODO: refactor ?:
-            // Выбор имени осуществлять будем в зависимости от пола, а также фамилии и возраста
-            string tmpName;
-            if (tmpGender == Gender.Male)
-            {
-                tmpName = maleNames[random.Next(maleNames.Length)];
-            }
-            else
-            {
-                tmpName = femaleNames[random.Next(femaleNames.Length)];
-            }
-            // Здесь фамилия и возраст
+            //TODO: refactor ?: +
+            string tmpName = tmpGender == Gender.Male 
+                ? maleNames[random.Next(maleNames.Length)] 
+                : femaleNames[random.Next(femaleNames.Length)];
             string tmpSurname = surnames[random.Next(surnames.Length)];
             int tmpAge = random.Next(MinAge, MaxAge);
             
