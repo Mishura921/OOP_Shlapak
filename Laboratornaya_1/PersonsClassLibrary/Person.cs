@@ -39,16 +39,12 @@ namespace PersonsClassLibrary
         public string Name
         {
             get => _name;
-
             set
             {
-                LanguageValidation(value);
-                _name = EditRegister(value);
 
-                if (_surname != null)
-                {
-                    NameSurnameValidation();
-                }
+                NameVerification(value, "Имя");
+                _name = EditRegister(value);
+                LanguageVerification();
             }
         }
 
@@ -58,16 +54,12 @@ namespace PersonsClassLibrary
         public string Surname
         {
             get => _surname;
-
             set
             {
-                LanguageValidation(value);
-                _surname = EditRegister(value);
 
-                if (_surname != null)
-                {
-                    NameSurnameValidation();
-                }
+                NameVerification(value, "Фамилия");
+                _surname = EditRegister(value);
+                LanguageVerification();
             }
         }
 
@@ -79,21 +71,14 @@ namespace PersonsClassLibrary
             get => _age;
             set
             {
-                try
+                if (value >= MinAge && value <= MaxAge)
                 {
-                    if (value <= MinAge || value >= MaxAge)
-                    {
-                        throw new IndexOutOfRangeException(
-                            $"Возраст должен быть в диапазоне: " +
-                            $"[{MinAge} - {MaxAge}]."
-                        );
-                    }
-
                     _age = value;
                 }
-                catch (IndexOutOfRangeException ex)
+                else
                 {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    throw new IndexOutOfRangeException("Возраст " +
+                        $"должен быть в диапазоне [{MinAge}:{MaxAge}].");
                 }
             }
         }
@@ -124,65 +109,55 @@ namespace PersonsClassLibrary
         public Person()
         { }
 
+        private const string _EngLetters = "^[A-Za-z]+(-[A-Za-z]+)*$";
+        private const string _RuLetters = "^[А-ЯЁа-яё]+(-[А-ЯЁа-яё]+)*$";
+
         /// <summary>
-        /// Функция определяет, какому языку соответствует переданная строка name.
+        /// Метод для определения языка на основе имени
         /// </summary>
-        /// <param name="name">String.</param>
-        private static Language LanguageValidation(string name)
+        /// <param name="name">Имя для анализа.</param>
+        /// <returns>Код языка (Engish, Russian or Other).</returns>
+        public static Language CheckLanguage(string Name)
         {
-            name = name.Trim();
-            var engLetters = new Regex(@"^[A-z]+(-[A-z])?[A-z]*$");
-            var ruLetters = new Regex(@"^[А-я]+(-[А-я])?[А-я]*$");
 
-            try
+            if (string.IsNullOrEmpty(Name) == false)
             {
-                if (string.IsNullOrEmpty(name))
-                {
-                    throw new ArgumentException(
-                        "Имя не может являться " +
-                        "null или быть пустым!");
-                }
-
-                if (engLetters.IsMatch(name))
+                if (Regex.IsMatch(Name, _EngLetters))
                 {
                     return Language.English;
                 }
-
-                if (ruLetters.IsMatch(name))
+                else if (Regex.IsMatch(Name, _RuLetters))
                 {
                     return Language.Russian;
                 }
-
-                throw new ArgumentException("Некорректный ввод!");
             }
-            catch (ArgumentException ex)
+            else
             {
-                //TODO: Remove
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return Language.Other;
+                throw new ArgumentException($"Все симоволы имени " +
+                    $"и фамилии должын быть на одном языке");
             }
+            
+            return Language.Other;
         }
 
         /// <summary>
-        /// Сравнение языка в фамилии и имени
+        /// Метод проверки на соответствие языку
         /// </summary>
-        /// <exception cref="FormatException">
-        /// Фамилия и имя - на одном языке!
-        /// </exception>
-        private void NameSurnameValidation()
+        /// <exception cref="FormatException"></exception>
+        private void LanguageVerification()
         {
-            if (!string.IsNullOrEmpty(Name)
-                && !string.IsNullOrEmpty(Surname))
+            if (!string.IsNullOrEmpty(_name)
+                && !string.IsNullOrEmpty(_surname))
             {
-                var nameLanguage = LanguageValidation(Name);
-                var surnameLanguage = LanguageValidation(Surname);
+                Language firstNameLanguage = CheckLanguage(_name);
+                Language lastNameLanguage = CheckLanguage(_surname);
 
-                if (nameLanguage != surnameLanguage)
+                if (firstNameLanguage != Language.Other
+                    && lastNameLanguage != Language.Other
+                    && firstNameLanguage != lastNameLanguage)
                 {
-                    throw new FormatException(
-                        "Имя и фамилия должны " +
-                        "быть на одном языке!"
-                    );
+                    throw new FormatException("Имя и фамилия " +
+                        "должны быть на одном языке.");
                 }
             }
         }
@@ -208,8 +183,8 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Генерирует объект человека со случайными параметрами: имени, фамилии, возраста
-        /// и пола.
+        /// Генерирует объект человека со случайными параметрами: имени, фамилии,
+        /// возраста и пола.
         /// </summary>
         /// <returns>Случайно сгенерированный человек.</returns>
         public static Person GetRandomPerson()
@@ -234,7 +209,7 @@ namespace PersonsClassLibrary
 
             Random random = new Random();
 
-            // Генерация пола
+            // Здесь происходит генерация пола
             Gender tmpGender = random.Next(2) == 0 
                 ? Gender.Male 
                 : Gender.Female;
@@ -246,6 +221,26 @@ namespace PersonsClassLibrary
             int tmpAge = random.Next(MinAge, MaxAge);
             
             return new Person(tmpName, tmpSurname, tmpAge, tmpGender);
+        }
+
+        /// <summary>
+        /// Метод проверки имени и фамилии на соответствие заданным критериям.
+        /// </summary>
+        private void NameVerification(string GetName, string GetValueName)
+        {
+            if (string.IsNullOrWhiteSpace(GetName))
+            {
+                throw new ArgumentException($"Возможно вы " +
+                    $"не ввели {GetValueName}," +
+                    $" так же не должно быть пробелов " +
+                    $"или null.");
+            }
+            if (!Regex.IsMatch(GetName, _EngLetters) && !Regex.IsMatch(GetName, _RuLetters))
+            {
+                throw new ArgumentException($"{GetValueName} должно содержать" +
+                    $" только буквы русского или английского алфавита. " +
+                    $"Двойные имена/фамилии содержат один символ тире.");
+            }
         }
     }
 } 

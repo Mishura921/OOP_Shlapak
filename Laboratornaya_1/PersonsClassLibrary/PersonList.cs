@@ -10,8 +10,11 @@
         /// </summary>
         private List<Person> _peopleArray = new List<Person>();
 
-        //TODO: encapsulation
-        public List<Person> PeopleArray => _peopleArray;
+        //TODO: encapsulation+
+        /// <summary>
+        /// Получает список людей, хранящихся в данном объекте.
+        /// </summary>
+        private List<Person> PeopleArray => _peopleArray;
 
         /// <summary>
         /// Метод, который проверяет корректность входного индекса.
@@ -37,11 +40,11 @@
         {
             PeopleArray.Add(person);
         }
+
         /// <summary>
         /// Метод, который удаляет человека.
         /// </summary>
         /// <param name="person">Человек, которого удаляют.</param>
-        
         public void DeleteElement(Person person)
         {
             PeopleArray.Remove(person);
