@@ -13,7 +13,6 @@ namespace Lab1
         /// </summary>
         private static void Main(string[] args)
         {
-            //TODO: RSDN+
             Console.WriteLine(
                 "'a' Нажмите любую клавишу, чтобы создать 2 " +
                 "списка персон по 3 человека в каждом: \n");

@@ -109,7 +109,12 @@ namespace PersonsClassLibrary
         public Person()
         { }
 
+        //TODO: XML
+        //TODO: RSDN
         private const string _EngLetters = "^[A-Za-z]+(-[A-Za-z]+)*$";
+
+        //TODO: XML
+        //TODO: RSDN
         private const string _RuLetters = "^[А-ЯЁа-яё]+(-[А-ЯЁа-яё]+)*$";
 
         /// <summary>

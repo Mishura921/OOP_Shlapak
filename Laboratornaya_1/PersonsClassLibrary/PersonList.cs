@@ -10,12 +10,6 @@
         /// </summary>
         private List<Person> _peopleArray = new List<Person>();
 
-        //TODO: encapsulation+
-        /// <summary>
-        /// Получает список людей, хранящихся в данном объекте.
-        /// </summary>
-        private List<Person> PeopleArray => _peopleArray;
-
         /// <summary>
         /// Метод, который проверяет корректность входного индекса.
         /// </summary>
@@ -25,7 +19,7 @@
         /// </exception>
         private void IsIndexValid(int index)
         {
-            if (index < 0 || index >= PeopleArray.Count)
+            if (index < 0 || index >= _peopleArray.Count)
             {
                 throw new IndexOutOfRangeException
                     ("Индекс вне диапазона!");
@@ -38,7 +32,7 @@
         /// <param name="person">Человек, которого добавляют.</param>
         public void AddElement(Person person)
         {
-            PeopleArray.Add(person);
+            _peopleArray.Add(person);
         }
 
         /// <summary>
@@ -47,7 +41,7 @@
         /// <param name="person">Человек, которого удаляют.</param>
         public void DeleteElement(Person person)
         {
-            PeopleArray.Remove(person);
+            _peopleArray.Remove(person);
         }
 
         /// <summary>
@@ -58,7 +52,7 @@
         public void DeleteElementByIndex(int index)
         {
             IsIndexValid(index);
-            PeopleArray.RemoveAt(index);
+            _peopleArray.RemoveAt(index);
         }
 
         /// <summary>
@@ -69,7 +63,7 @@
         public Person GetElementByIndex(int index)
         {
             IsIndexValid(index);
-            return PeopleArray[index];
+            return _peopleArray[index];
         }
 
         /// <summary>
@@ -79,20 +73,20 @@
         /// <returns>Индекс человека</returns>
         public int GetIndexElementFromList(Person person)
         {
-            return PeopleArray.IndexOf(person);
+            return _peopleArray.IndexOf(person);
         }
 
         /// <summary>
         /// Подсчитывает количество элементов в коллекции.
         /// </summary>
-        public int Count => PeopleArray.Count;
+        public int Count => _peopleArray.Count;
 
         /// <summary>
         /// Очищает коллекцию. Не принимает на вход элементов.
         /// </summary>
         public void ClearList()
         {
-            PeopleArray.Clear();
+            _peopleArray.Clear();
         }
     }
 }
