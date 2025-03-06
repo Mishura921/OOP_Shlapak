@@ -88,7 +88,7 @@ namespace Lab1
             Console.WriteLine("\n\tВторой человек из первого списка " +
                 "скопирован в конец второго списка! Пункт 'd' выполнен! \n\n");
 
-            Console.WriteLine( "'e' Нажмите любую клавишу, чтобы удалить " +
+            Console.WriteLine("'e' Нажмите любую клавишу, чтобы удалить " +
                 "второго человека из первого списка: \n");
             Console.ReadKey();
             men.DeleteElementByIndex(1);
@@ -123,7 +123,7 @@ namespace Lab1
             Console.ReadKey();
             Console.WriteLine("\n\tВведите данные: \n");
             var inputPerson = InputPersonByConsole();
-            Console.WriteLine(inputPerson.Info()); 
+            Console.WriteLine(inputPerson.Info());
 
             Console.WriteLine("Нажмите любую клавишу, чтобы сгенерировать " +
                 "персонажа: \n");
@@ -132,7 +132,7 @@ namespace Lab1
             var randomPerson = Person.GetRandomPerson();
             Console.WriteLine(randomPerson.Info() + "!");
         }
-        
+
         /// <summary>
         /// Метод для ввода с клавиатуры в консоль
         /// </summary>
@@ -142,42 +142,44 @@ namespace Lab1
 
             var actionList = new List<(Action<string>, string)>
             {
-                (
-                new Action<string>((string property) =>
+                (new Action<string>((string property) =>
                 {
-                    Console.Write($"Enter person's {property}: ");
+                    Console.Write($"Введите  {property}  персонажа: ");
                     person.Name = Console.ReadLine();
-                }), "name"),
+                }), "имя"),
 
                 (new Action<string>((string property) =>
                 {
-                    Console.Write($"Enter person's {property}: ");
+                    Console.Write($"Введите {property} персонажа: ");
                     person.Surname = Console.ReadLine();
-                }), "surname"),
+                }), "фамилию"),
 
                 (new Action<string>((string property) =>
                 {
-                    Console.Write($"Enter person's {property}: ");
-                    _ = int.TryParse(Console.ReadLine(), out int tmpAge);
-                    person.Age = tmpAge;
-                }), "age"),
+                    Console.Write($"Введите {property} персонажа: ");
+                    string strAge = Console.ReadLine();
+                    AgeVerification(strAge);
+                    person.Age = Convert.ToInt32(strAge);
+                }), "возраст"),
 
                 (new Action<string>((string property) =>
                 {
+                    const int MaleValue = 1;
+                    const int FemaleValue = 2;
                     Console.Write
-                        ($"Enter person's {property} (1 - Male or 2 - Female): ");
+                        ($"Введите {property} персонажа: ({MaleValue} - Мужчина или {FemaleValue} - Женщина): ");
                     _ = int.TryParse(Console.ReadLine(), out int tmpGender);
-                    if (tmpGender < 1 || tmpGender > 2)
+                    if (tmpGender < MaleValue || tmpGender > FemaleValue)
                     {
                         throw new IndexOutOfRangeException
-                            ("Должно быть в диапазоне [1; 2].");
+                            ($"Пол может быть: [{MaleValue}; {FemaleValue}].");
                     }
 
                     var realGender = tmpGender == 1
                         ? Gender.Male
                         : Gender.Female;
                     person.Gender = realGender;
-                }), "gender")
+                }), "пол")
             };
 
             foreach (var action in actionList)
@@ -207,9 +209,9 @@ namespace Lab1
                         || exception.GetType() == typeof(FormatException)
                         || exception.GetType() == typeof(ArgumentException))
                     {
-                        Console.WriteLine($"Incorrect {propertyName}." +
-                        $" Error: {exception.Message}" +
-                        $"Please, enter the {propertyName} again.");
+                        Console.WriteLine($"Неправильное {propertyName}." +
+                        $" Ошибка: {exception.Message}" +
+                        $" Пожалуйста, введите {propertyName} снова.");
                     }
                     else
                     {
@@ -234,6 +236,18 @@ namespace Lab1
                 Person person = personList.GetElementByIndex(i);
                 Console.WriteLine(person.Info());
             }
+        }
+        /// <summary>
+        /// Метод проверки введенного возраста.
+        /// </summary>
+        private static int AgeVerification(string strAge)
+        {
+            if (!int.TryParse(strAge, out int age))
+            {
+                throw new FormatException("Возраст не должен " +
+                    "содержать посторонних символов.");
+            }
+            return age;
         }
     }
 }

@@ -71,6 +71,7 @@ namespace PersonsClassLibrary
             get => _age;
             set
             {
+                
                 if (value >= MinAge && value <= MaxAge)
                 {
                     _age = value;
@@ -109,13 +110,27 @@ namespace PersonsClassLibrary
         public Person()
         { }
 
-        //TODO: XML
-        //TODO: RSDN
-        private const string _EngLetters = "^[A-Za-z]+(-[A-Za-z]+)*$";
+        //TODO: XML+
+        //TODO: RSDN+
+        /// <summary>
+        /// Регулярное выражение для проверки строки, содержащей только английские буквы.
+        /// </summary>
+        /// <remarks>
+        /// Допускаются только буквы латинского алфавита (A-Z, a-z).
+        /// </remarks>
+        private const string _EngLetters = 
+            "^[A-Za-z]+(-[A-Za-z]+)*$";
 
-        //TODO: XML
-        //TODO: RSDN
-        private const string _RuLetters = "^[А-ЯЁа-яё]+(-[А-ЯЁа-яё]+)*$";
+        //TODO: XML+
+        //TODO: RSDN+
+        /// <summary>
+        /// Регулярное выражение для проверки строки, содержащей только русские буквы.
+        /// </summary>
+        /// <remarks>
+        /// Допускаются только буквы русского алфавита (А-Я, а-я, Ё, ё).
+        /// </remarks>
+        private const string _RuLetters = 
+            "^[А-ЯЁа-яё]+(-[А-ЯЁа-яё]+)*$";
 
         /// <summary>
         /// Метод для определения языка на основе имени
@@ -235,9 +250,9 @@ namespace PersonsClassLibrary
         {
             if (string.IsNullOrWhiteSpace(GetName))
             {
-                throw new ArgumentException($"Возможно вы " +
-                    $"не ввели {GetValueName}," +
-                    $" так же не должно быть пробелов " +
+                throw new ArgumentException($"Возможно, Вы " +
+                    $"не ввели {GetValueName.ToLower()}," +
+                    $" также не должно быть пробелов " +
                     $"или null.");
             }
             if (!Regex.IsMatch(GetName, _EngLetters) && !Regex.IsMatch(GetName, _RuLetters))
