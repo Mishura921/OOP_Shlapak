@@ -166,8 +166,8 @@ namespace Lab1
                 {
                     const int MaleValue = 1;
                     const int FemaleValue = 2;
-                    Console.Write
-                        ($"Введите {property} персонажа: ({MaleValue} - Мужчина или {FemaleValue} - Женщина): ");
+                    Console.Write($"Введите {property} персонажа: " +
+                        $"({MaleValue} - Мужчина или {FemaleValue} - Женщина): ");
                     _ = int.TryParse(Console.ReadLine(), out int tmpGender);
                     if (tmpGender < MaleValue || tmpGender > FemaleValue)
                     {
@@ -237,6 +237,7 @@ namespace Lab1
                 Console.WriteLine(person.Info());
             }
         }
+
         /// <summary>
         /// Метод проверки введенного возраста.
         /// </summary>

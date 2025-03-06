@@ -110,27 +110,23 @@ namespace PersonsClassLibrary
         public Person()
         { }
 
-        //TODO: XML+
-        //TODO: RSDN+
+        //TODO: RSDN
         /// <summary>
         /// Регулярное выражение для проверки строки, содержащей только английские буквы.
         /// </summary>
         /// <remarks>
         /// Допускаются только буквы латинского алфавита (A-Z, a-z).
         /// </remarks>
-        private const string _EngLetters = 
-            "^[A-Za-z]+(-[A-Za-z]+)*$";
+        private const string _EngLetters = "^[A-Za-z]+(-[A-Za-z]+)*$";
 
-        //TODO: XML+
-        //TODO: RSDN+
+        //TODO: RSDN
         /// <summary>
         /// Регулярное выражение для проверки строки, содержащей только русские буквы.
         /// </summary>
         /// <remarks>
         /// Допускаются только буквы русского алфавита (А-Я, а-я, Ё, ё).
         /// </remarks>
-        private const string _RuLetters = 
-            "^[А-ЯЁа-яё]+(-[А-ЯЁа-яё]+)*$";
+        private const string _RuLetters = "^[А-ЯЁа-яё]+(-[А-ЯЁа-яё]+)*$";
 
         /// <summary>
         /// Метод для определения языка на основе имени
