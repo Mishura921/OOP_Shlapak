@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PersonsClassLibrary
+﻿namespace PersonsClassLibrary
 {
-    enum Language
+    /// <summary>
+    /// Варианты выбора языка.
+    /// </summary>
+    public enum Language
     {
         /// <summary>
-        /// Русский
+        /// Русский язык.
         /// </summary>
         Russian,
+
         /// <summary>
-        /// Английский
+        /// Английский язык.
         /// </summary>
         English,
+
         /// <summary>
-        /// Другой
+        /// Другой язык.
         /// </summary>
         Other
     }

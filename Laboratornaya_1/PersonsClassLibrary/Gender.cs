@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PersonsClassLibrary
+﻿namespace PersonsClassLibrary
 {
-    enum Gender
+    /// <summary>
+    /// Возможные варианты выбора пола.
+    /// </summary>
+    public enum Gender
     {
         /// <summary>
-        /// Женский
+        /// Женский пол.
         /// </summary>
         Female,
+
         /// <summary>
-        /// Мужской
+        /// Мужской пол.
         /// </summary>
-        Male,
-        /// <summary>
-        /// Другой
-        /// </summary>
-        Other,
-        /// <summary>
-        /// Неизвестно
-        /// </summary>
-        Unknown
+        Male
     }
 }
