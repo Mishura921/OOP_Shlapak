@@ -6,9 +6,9 @@
     public class PersonList
     {
         /// <summary>
-        /// Коллекция экземпляров класса Person, представляющая людей.
+        /// Коллекция экземпляров класса PersonBase, представляющая людей.
         /// </summary>
-        private List<Person> _peopleArray = new List<Person>();
+        private List<PersonBase> _peopleArray = new List<PersonBase>();
 
         /// <summary>
         /// Метод, который проверяет корректность входного индекса.
@@ -30,7 +30,7 @@
         /// Функция для добавления человека в конец массива.
         /// </summary>
         /// <param name="person">Человек, которого добавляют.</param>
-        public void AddElement(Person person)
+        public void AddElement(PersonBase person)
         {
             _peopleArray.Add(person);
         }
@@ -39,7 +39,7 @@
         /// Метод, который удаляет человека.
         /// </summary>
         /// <param name="person">Человек, которого удаляют.</param>
-        public void DeleteElement(Person person)
+        public void DeleteElement(PersonBase person)
         {
             _peopleArray.Remove(person);
         }
@@ -60,7 +60,7 @@
         /// </summary>
         /// <param name="index">Индекс человека в массиве.</param>
         /// <returns>Человек из массива.</returns>
-        public Person GetElementByIndex(int index)
+        public PersonBase GetElementByIndex(int index)
         {
             IsIndexValid(index);
             return _peopleArray[index];
@@ -71,7 +71,7 @@
         /// </summary>
         /// <param name="index">Имя человека</param>
         /// <returns>Индекс человека</returns>
-        public int GetIndexElementFromList(Person person)
+        public int GetIndexElementFromList(PersonBase person)
         {
             return _peopleArray.IndexOf(person);
         }

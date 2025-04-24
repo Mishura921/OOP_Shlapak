@@ -21,18 +21,18 @@ namespace Lab1
             PersonList men = new PersonList();
             PersonList women = new PersonList();
 
-            Person bale = new Person(
+            PersonBase bale = new PersonBase(
                 "Christian", "Bale", 51, Gender.Male);
-            Person gosling = new Person(
+            PersonBase gosling = new PersonBase(
                 "Ryan", "Gosling", 44, Gender.Male);
-            Person dafoe = new Person(
+            PersonBase dafoe = new PersonBase(
                 "Willem", "Dafoe", 69, Gender.Male);
 
-            Person stone = new Person(
+            PersonBase stone = new PersonBase(
                 "Emma", "Stone", 36, Gender.Female);
-            Person aniston = new Person(
+            PersonBase aniston = new PersonBase(
                 "Jennifer", "Aniston", 56, Gender.Female);
-            Person robbie = new Person(
+            PersonBase robbie = new PersonBase(
                 "Margot", "Robbie", 34, Gender.Female);
 
             men.AddElement(bale);
@@ -59,7 +59,7 @@ namespace Lab1
                 "'c' Нажмите любую клавишу, чтобы добавить нового " +
                 "человека в первый список: \n");
             Console.ReadKey();
-            Person newActor = new Person("Tom", "Cruise", 62, Gender.Male);
+            PersonBase newActor = new PersonBase("Tom", "Cruise", 62, Gender.Male);
             men.AddElement(newActor);
             Console.WriteLine(
                 $"\n\tСписок актёров пополняет {newActor.Name} " +
@@ -129,16 +129,16 @@ namespace Lab1
                 "персонажа: \n");
             Console.ReadKey();
             Console.Write("\nРандомный персонаж...: \n");
-            var randomPerson = Person.GetRandomPerson();
+            var randomPerson = PersonBase.GetRandomPerson();
             Console.WriteLine(randomPerson.Info() + "!");
         }
 
         /// <summary>
         /// Метод для ввода с клавиатуры в консоль
         /// </summary>
-        public static Person InputPersonByConsole()
+        public static PersonBase InputPersonByConsole()
         {
-            var person = new Person();
+            var person = new PersonBase();
 
             var actionList = new List<(Action<string>, string)>
             {
@@ -233,7 +233,7 @@ namespace Lab1
             }
             for (int i = 0; i < personList.Count; i++)
             {
-                Person person = personList.GetElementByIndex(i);
+                PersonBase person = personList.GetElementByIndex(i);
                 Console.WriteLine(person.Info());
             }
         }

@@ -6,7 +6,7 @@ namespace PersonsClassLibrary
     /// <summary>
     /// Класс, описывающий персонажей.
     /// </summary>
-    public class Person
+    public class PersonBase
     {
         /// <summary>
         /// Имя.
@@ -96,7 +96,7 @@ namespace PersonsClassLibrary
         /// <param name="surname">Фамилия.</param>
         /// <param name="age">Возраст.</param>
         /// <param name="gender">Пол.</param>
-        public Person(string name, string surname, int age, Gender gender)
+        public PersonBase(string name, string surname, int age, Gender gender)
         {
             Name = name; 
             Surname = surname;
@@ -105,9 +105,9 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="Person"/>.
+        /// Инициализирует новый экземпляр класса <see cref="PersonBase"/>.
         /// </summary>
-        public Person()
+        public PersonBase()
         { }
 
         //TODO: RSDN
@@ -203,7 +203,7 @@ namespace PersonsClassLibrary
         /// возраста и пола.
         /// </summary>
         /// <returns>Случайно сгенерированный человек.</returns>
-        public static Person GetRandomPerson()
+        public static PersonBase GetRandomPerson()
         {
             string[] maleNames =
             {
@@ -236,7 +236,7 @@ namespace PersonsClassLibrary
             string tmpSurname = surnames[random.Next(surnames.Length)];
             int tmpAge = random.Next(MinAge, MaxAge);
             
-            return new Person(tmpName, tmpSurname, tmpAge, tmpGender);
+            return new PersonBase(tmpName, tmpSurname, tmpAge, tmpGender);
         }
 
         /// <summary>
