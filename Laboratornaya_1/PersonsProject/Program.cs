@@ -123,14 +123,14 @@ namespace Lab1
             Console.ReadKey();
             Console.WriteLine("\n\tВведите данные: \n");
             var inputPerson = InputPersonByConsole();
-            Console.WriteLine(inputPerson.Info());
+            Console.WriteLine(inputPerson.GetPersonInfo());
 
             Console.WriteLine("Нажмите любую клавишу, чтобы сгенерировать " +
                 "персонажа: \n");
             Console.ReadKey();
             Console.Write("\nРандомный персонаж...: \n");
             var randomPerson = PersonBase.GetRandomPerson();
-            Console.WriteLine(randomPerson.Info() + "!");
+            Console.WriteLine(randomPerson.GetPersonInfo() + "!");
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace Lab1
             for (int i = 0; i < personList.Count; i++)
             {
                 PersonBase person = personList.GetElementByIndex(i);
-                Console.WriteLine(person.Info());
+                Console.WriteLine(person.GetPersonInfo());
             }
         }
 

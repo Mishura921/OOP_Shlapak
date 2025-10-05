@@ -13,6 +13,11 @@
         /// <summary>
         /// Мужской пол.
         /// </summary>
-        Male
+        Male,
+
+        /// <summary>
+        /// Другой.
+        /// </summary>
+        Other
     }
 }

@@ -4,12 +4,12 @@ using System.Text.RegularExpressions;
 namespace PersonsClassLibrary
 {
     /// <summary>
-    /// Класс, описывающий персонажей.
-    /// </summary>
-    public class PersonBase
+    /// Абстрактный класс, описывающий персонажей.
+    /// </summary> 
+    public abstract class PersonBase
     {
         /// <summary>
-        /// Имя.
+        /// Имя персонажа.
         /// </summary>
         private string _name;
 
@@ -24,24 +24,24 @@ namespace PersonsClassLibrary
         private int _age;
 
         /// <summary>
-        /// Минимальный предусматриваемый возраст.
+        /// Минимальный возраст персонажа.
         /// </summary>
-        private const int MinAge = 0;
+        protected const int MinAge = 0;
 
         /// <summary>
-        /// Максимальный предусматриваемый возраст.
+        /// Максимальный возраст персонажа.
         /// </summary>
-        private const int MaxAge = 120;
+        protected const int MaxAge = 125;
+
 
         /// <summary>
-        /// Вводимое имя.
+        /// Свойство для получения или ввода имени.
         /// </summary>
         public string Name
         {
             get => _name;
             set
             {
-
                 NameVerification(value, "Имя");
                 _name = EditRegister(value);
                 LanguageVerification();
@@ -49,7 +49,7 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Вводимая фамилия.
+        /// Свойство для получения или ввода фамилии.
         /// </summary>
         public string Surname
         {
@@ -64,39 +64,32 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Передаваемое значение возраста.
+        /// Свойство для получения или ввода возраста.
         /// </summary>
         public int Age
         {
             get => _age;
             set
             {
-                
-                if (value >= MinAge && value <= MaxAge)
-                {
-                    _age = value;
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException("Возраст " +
-                        $"должен быть в диапазоне [{MinAge}:{MaxAge}].");
-                }
+
+                CheckAge(value);
+                _age = value;
             }
         }
 
         /// <summary>
-        /// Передаваемое значение пола.
+        /// Свойство для получения или ввода пола.
         /// </summary>
         public Gender Gender { get; set; }
 
         /// <summary>
-        /// Конструктор персонажа
+        /// Конструктор персонажа (класса PersonBase)
         /// </summary>
         /// <param name="name">Имя.</param>
         /// <param name="surname">Фамилия.</param>
         /// <param name="age">Возраст.</param>
         /// <param name="gender">Пол.</param>
-        public PersonBase(string name, string surname, int age, Gender gender)
+        protected PersonBase(string name, string surname, int age, Gender gender)
         {
             Name = name; 
             Surname = surname;
@@ -105,28 +98,26 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="PersonBase"/>.
+        /// Конструктор по умолчанию.
         /// </summary>
-        public PersonBase()
+        protected PersonBase()
         { }
 
-        //TODO: RSDN
         /// <summary>
         /// Регулярное выражение для проверки строки, содержащей только английские буквы.
         /// </summary>
         /// <remarks>
         /// Допускаются только буквы латинского алфавита (A-Z, a-z).
         /// </remarks>
-        private const string _EngLetters = "^[A-Za-z]+(-[A-Za-z]+)*$";
+        private const string _engLetters = "^[A-Za-z]+(-[A-Za-z]+)*$";
 
-        //TODO: RSDN
         /// <summary>
         /// Регулярное выражение для проверки строки, содержащей только русские буквы.
         /// </summary>
         /// <remarks>
         /// Допускаются только буквы русского алфавита (А-Я, а-я, Ё, ё).
         /// </remarks>
-        private const string _RuLetters = "^[А-ЯЁа-яё]+(-[А-ЯЁа-яё]+)*$";
+        private const string _ruLetters = "^[А-ЯЁа-яё]+(-[А-ЯЁа-яё]+)*$";
 
         /// <summary>
         /// Метод для определения языка на основе имени
@@ -138,11 +129,11 @@ namespace PersonsClassLibrary
 
             if (string.IsNullOrEmpty(Name) == false)
             {
-                if (Regex.IsMatch(Name, _EngLetters))
+                if (Regex.IsMatch(Name, _engLetters))
                 {
                     return Language.English;
                 }
-                else if (Regex.IsMatch(Name, _RuLetters))
+                else if (Regex.IsMatch(Name, _ruLetters))
                 {
                     return Language.Russian;
                 }
@@ -190,54 +181,28 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Функция выводит информацию об экземпляре класса в соответствующем формате.
+        /// Метод выводит поля класса Person.
         /// </summary>
-        public string Info()
+        public string GetPersonInfo()
         {
             return $"{Name} {Surname}; Возраст - {Age}; " +
                    $"Пол - {Gender}";
         }
 
         /// <summary>
-        /// Генерирует объект человека со случайными параметрами: имени, фамилии,
-        /// возраста и пола.
+        /// Преобразует имя и фамилию в строковый формат.
         /// </summary>
-        /// <returns>Случайно сгенерированный человек.</returns>
-        public static PersonBase GetRandomPerson()
+        /// <returns>Имя и фамилия человека.</returns>
+        public string GetPersonNameSurname()
         {
-            string[] maleNames =
-            {
-                "Gaius", "Winston", "Benito", 
-                "Vlad", "Pierre", "Clyde"
-            };
-
-            string[] femaleNames =
-            {
-                "Cleopatra", "Elizabeth", "Mary", 
-                "Anne", "Marie", "Bonnie"
-            };
-
-            string[] surnames =
-            {
-                "Caesar", "Churchill", "Mussolini", 
-                "Drakula", "Curie", "Parker"
-            };
-
-            Random random = new Random();
-
-            // Здесь происходит генерация пола
-            Gender tmpGender = random.Next(2) == 0 
-                ? Gender.Male 
-                : Gender.Female;
-
-            string tmpName = tmpGender == Gender.Male 
-                ? maleNames[random.Next(maleNames.Length)] 
-                : femaleNames[random.Next(femaleNames.Length)];
-            string tmpSurname = surnames[random.Next(surnames.Length)];
-            int tmpAge = random.Next(MinAge, MaxAge);
-            
-            return new PersonBase(tmpName, tmpSurname, tmpAge, tmpGender);
+            return $"{Name} {Surname}";
         }
+
+        /// <summary>
+        /// Абстрактный метод для получения информации о персонаже.
+        /// </summary>
+        /// <returns>Возвращает информацию о персонаже</returns>
+        public abstract string GetInfo();
 
         /// <summary>
         /// Метод проверки имени и фамилии на соответствие заданным критериям.
@@ -251,11 +216,24 @@ namespace PersonsClassLibrary
                     $" также не должно быть пробелов " +
                     $"или null.");
             }
-            if (!Regex.IsMatch(GetName, _EngLetters) && !Regex.IsMatch(GetName, _RuLetters))
+            if (!Regex.IsMatch(GetName, _engLetters) && !Regex.IsMatch(GetName, _ruLetters))
             {
                 throw new ArgumentException($"{GetValueName} должно содержать" +
                     $" только буквы русского или английского алфавита. " +
                     $"Двойные имена/фамилии содержат один символ тире.");
+            }
+        }
+
+        /// <summary>
+        /// Проверка возраста персоны.
+        /// </summary>
+        /// <param name="age">Возраст персоны.</param>
+        protected void CheckAge(int age, int minAge = MinAge, int maxAge = MaxAge)
+        {
+            if (age < minAge || age > maxAge)
+            {
+                throw new IndexOutOfRangeException($"Возраст " +
+                    $"должен быть в диапазоне [{minAge};{maxAge}].");
             }
         }
     }
