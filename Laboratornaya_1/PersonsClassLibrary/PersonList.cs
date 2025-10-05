@@ -1,93 +1,82 @@
-﻿namespace PersonsClassLibrary
+﻿using PersonsClassLibrary;
+
+namespace ClassPerson
 {
     /// <summary>
-    /// Класс, содержащий массив персонажей
+    /// Класс, представляющий список экземпляров PersonBase.
     /// </summary>
     public class PersonList
     {
         /// <summary>
-        /// Коллекция экземпляров класса PersonBase, представляющая людей.
+        /// Список экземпляров PersonBase.
         /// </summary>
-        private List<PersonBase> _peopleArray = new List<PersonBase>();
+        private List<PersonBase> _people = new List<PersonBase>();
 
         /// <summary>
-        /// Метод, который проверяет корректность входного индекса.
+        /// Метод добавления элементов списка.
         /// </summary>
-        /// <param name="index">Входной индекс.</param>
-        /// <exception cref="IndexOutOfRangeException">
-        /// Индекс выходит за пределы допустимого диапазона.
-        /// </exception>
-        private void IsIndexValid(int index)
+        public void Add(PersonBase person)
         {
-            if (index < 0 || index >= _peopleArray.Count)
+            _people.Add(person);
+        }
+
+        /// <summary>
+        /// Метод удаления элементов списка.
+        /// </summary>     `
+        public void Remove(PersonBase person)
+        {
+            _people.Remove(person);
+        }
+
+        /// <summary>
+        /// Метод удаления элемента по индексу.
+        /// </summary>
+        public void RemoveIndex(int index)
+        {
+            ValidateIndex(index);
+            _people.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// Метод получения элемента по индексу.
+        /// </summary>
+        public PersonBase GetElement(int index)
+        {
+            ValidateIndex(index);
+            return _people[index];
+        }
+
+        /// <summary>
+        /// Вспомогательный метод для проверки индекса на допустимость.
+        /// </summary>
+        private void ValidateIndex(int index)
+        {
+            if (index < 0 || index >= _people.Count)
             {
-                throw new IndexOutOfRangeException
-                    ("Индекс вне диапазона!");
+                throw new IndexOutOfRangeException("Индекс" +
+                    " вне диапазона.");
             }
         }
 
         /// <summary>
-        /// Функция для добавления человека в конец массива.
+        /// Метод возвращает индекс элемента в списке.
         /// </summary>
-        /// <param name="person">Человек, которого добавляют.</param>
-        public void AddElement(PersonBase person)
+        public int GetIndex(PersonBase person)
         {
-            _peopleArray.Add(person);
+            return _people.IndexOf(person);
         }
 
         /// <summary>
-        /// Метод, который удаляет человека.
+        /// Метод очистки списка.
         /// </summary>
-        /// <param name="person">Человек, которого удаляют.</param>
-        public void DeleteElement(PersonBase person)
+        public void Clear()
         {
-            _peopleArray.Remove(person);
+            _people.Clear();
         }
 
         /// <summary>
-        /// Метод, который находит человека в массиве по индексу.
+        /// Определение количества элементов в списке.
         /// </summary>
-        /// <param name="index">Индекс человека в массиве.</param>
-        /// <returns>Человек из массива.</returns>
-        public void DeleteElementByIndex(int index)
-        {
-            IsIndexValid(index);
-            _peopleArray.RemoveAt(index);
-        }
-
-        /// <summary>
-        /// Метод, который находит человека в массиве по индексу.
-        /// </summary>
-        /// <param name="index">Индекс человека в массиве.</param>
-        /// <returns>Человек из массива.</returns>
-        public PersonBase GetElementByIndex(int index)
-        {
-            IsIndexValid(index);
-            return _peopleArray[index];
-        }
-
-        /// <summary>
-        /// Метод, который возвращает индекс элемента в списке.
-        /// </summary>
-        /// <param name="index">Имя человека</param>
-        /// <returns>Индекс человека</returns>
-        public int GetIndexElementFromList(PersonBase person)
-        {
-            return _peopleArray.IndexOf(person);
-        }
-
-        /// <summary>
-        /// Подсчитывает количество элементов в коллекции.
-        /// </summary>
-        public int Count => _peopleArray.Count;
-
-        /// <summary>
-        /// Очищает коллекцию. Не принимает на вход элементов.
-        /// </summary>
-        public void ClearList()
-        {
-            _peopleArray.Clear();
-        }
+        public int Count => _people.Count;
     }
 }
-
