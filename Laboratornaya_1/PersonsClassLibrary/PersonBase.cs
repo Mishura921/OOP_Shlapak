@@ -33,7 +33,6 @@ namespace PersonsClassLibrary
         /// </summary>
         protected const int MaxAge = 125;
 
-
         /// <summary>
         /// Свойство для получения или ввода имени.
         /// </summary>

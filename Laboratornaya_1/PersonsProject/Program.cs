@@ -41,6 +41,7 @@ namespace Persons
             var person = listOfPeople.GetElement(3);
             switch (person)
             {
+                //TODO: RSDN
                 case Adult personAdult:
                     Console.WriteLine($"Тип: Взрослый");
                     Console.WriteLine(personAdult.GetCar());

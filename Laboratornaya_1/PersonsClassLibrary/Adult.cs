@@ -63,6 +63,7 @@ namespace ClassesPersons
         /// </summary>
         private const int SeriesPart2High = 25;
 
+        //TODO: rename
         /// <summary>
         /// Место работы
         /// </summary>
@@ -119,8 +120,11 @@ namespace ClassesPersons
             set
             {
                 var parts = value.Split(' ');
-                if (parts.Length != 2 || parts[0].Length != 4 ||
-                    parts[1].Length != 6)
+                //TODO: RSDN
+                //TODO: to const
+                if (parts.Length != 2 
+                    || parts[0].Length != 4 
+                    || parts[1].Length != 6)
                     throw new FormatException("Паспорт должен " +
                         "быть в формате: 'СССС НННННН' " +
                         "(например: '0122 302011').");
@@ -308,13 +312,14 @@ namespace ClassesPersons
 
             if (gender == Gender.Other)
             {
-                gender = random.Next(1, 3) == 1 ? Gender.Male
+                gender = random.Next(1, 3) == 1 
+                    ? Gender.Male
                     : Gender.Female;
             }
 
-            string tmpName = gender ==
-                Gender.Male ? maleNames[random.Next(maleNames.Length)] :
-                femaleNames[random.Next(femaleNames.Length)];
+            string tmpName = gender == Gender.Male 
+                ? maleNames[random.Next(maleNames.Length)] 
+                : femaleNames[random.Next(femaleNames.Length)];
             string tmpSurname = surnames[random.Next(surnames.Length)];
             int tmpAge = random.Next(MinAge, MaxAge + 1);
             int tmpSeries1 = random.Next(SeriesPart1Low, SeriesPart1High + 1);
@@ -329,6 +334,7 @@ namespace ClassesPersons
             {
                 tmpSpouse = new Adult
                 {
+                    //TODO: formatting
                     Gender = gender ==
                         Gender.Male ? Gender.Female : Gender.Male,
                     Name = gender ==
@@ -338,6 +344,7 @@ namespace ClassesPersons
                 };
             }
 
+            //TODO: formatting
             string? tmpEmployer = random.Next(1, 3) == 1
                 ? employers[random.Next(employers.Length)] : "Не работает";
 
