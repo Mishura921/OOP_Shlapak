@@ -37,27 +37,8 @@ namespace Persons
             Console.WriteLine("Нажмите любую клавишу " +
                 "для определения типа 4-ого человека.");
             _ = Console.ReadKey();
-
-
-            Console.WriteLine("\nТип четвёртого человека в списке.");
             Console.WriteLine();
             var person = listOfPeople.GetElement(3);
-
-            //    switch (person)
-            //    {
-            //        case Adult personAdult:
-            //            Console.WriteLine(personAdult.GetCar());
-            //            break;
-            //        case Child personChild:
-            //            Console.WriteLine(personChild.GetHobby());
-            //            break;
-            //        default:
-            //            break;
-            //    }
-
-            //    _ = Console.ReadKey();
-
-            //}
             switch (person)
             {
                 case Adult personAdult:
