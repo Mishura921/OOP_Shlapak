@@ -70,7 +70,6 @@ namespace ClassesPersons
                     " не можетбыть null");
         }
 
-
         /// <summary>
         /// Конструктор для создания экземпляра класса Child.
         /// </summary>

@@ -14,14 +14,12 @@ namespace ClassesPersons
     public class Adult : PersonBase
     {
         /// <summary>
-        /// Номер паспорта (6 цифр).
+        /// Номер паспорта (6 цифр, 953726).
         /// </summary>
         private int _passportNumber;
 
         /// <summary>
-        /// Первая и вторая части серии паспорта,
-        /// объединённые в одно число 
-        /// (например, 0122).
+        /// Серия паспорта (4 цифры, 0122)
         /// </summary>
         private int _passportSeries;
 
@@ -76,7 +74,7 @@ namespace ClassesPersons
         private Adult _spouse;
 
         /// <summary>
-        /// Ленивое создание объекта Dummy.
+        /// Создание объекта Dummy.
         /// </summary>
         private static readonly Lazy<Adult> _lazyDummy =
             new Lazy<Adult>(CreateDummy);
@@ -143,7 +141,7 @@ namespace ClassesPersons
             get => _employer;
             set => _employer = value
                 ?? throw new ArgumentNullException(
-                    nameof(Employer), "Место работы не можетбыть null");
+                    nameof(Employer), "Место работы не может быть null");
         }
 
         /// <summary>
@@ -302,8 +300,8 @@ namespace ClassesPersons
             {
                 "SO UPS", "Ministry of Energy",
                 "Rosseti", "RusHydro", "Rosatom",
-                "50Hz", "NYISO", "Tennet",
-                "Bank of America", "Sber"
+                "Rosneft", "Gazprom", "Tatneft",
+                "TBank", "Sber"
             };
 
             var random = new Random();

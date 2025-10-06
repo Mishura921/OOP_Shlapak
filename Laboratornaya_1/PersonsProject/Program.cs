@@ -20,7 +20,7 @@ namespace Persons
             var listOfPeople = new PersonList();
             var rnd = new Random();
 
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < 7; i++)
             {
                 PersonBase rndPerson = rnd.Next(2) == 0
                     ? Adult.GetRandomPerson()
@@ -38,19 +38,38 @@ namespace Persons
                 "для определения типа 4-ого человека.");
             _ = Console.ReadKey();
 
+
             Console.WriteLine("\nТип четвёртого человека в списке.");
             Console.WriteLine();
             var person = listOfPeople.GetElement(3);
 
+            //    switch (person)
+            //    {
+            //        case Adult personAdult:
+            //            Console.WriteLine(personAdult.GetCar());
+            //            break;
+            //        case Child personChild:
+            //            Console.WriteLine(personChild.GetHobby());
+            //            break;
+            //        default:
+            //            break;
+            //    }
+
+            //    _ = Console.ReadKey();
+
+            //}
             switch (person)
             {
                 case Adult personAdult:
+                    Console.WriteLine($"Тип: Взрослый");  // ← ДОБАВЛЕНО
                     Console.WriteLine(personAdult.GetCar());
                     break;
                 case Child personChild:
+                    Console.WriteLine($"Тип: Ребёнок");   // ← ДОБАВЛЕНО
                     Console.WriteLine(personChild.GetHobby());
                     break;
                 default:
+                    Console.WriteLine($"Тип: Неизвестный"); // ← ДОБАВЛЕНО
                     break;
             }
 

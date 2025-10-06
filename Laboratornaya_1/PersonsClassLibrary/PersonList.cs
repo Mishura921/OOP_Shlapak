@@ -22,7 +22,7 @@ namespace ClassPerson
 
         /// <summary>
         /// Метод удаления элементов списка.
-        /// </summary>     `
+        /// </summary>
         public void Remove(PersonBase person)
         {
             _people.Remove(person);
