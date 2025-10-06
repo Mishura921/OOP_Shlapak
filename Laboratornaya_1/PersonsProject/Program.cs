@@ -42,15 +42,15 @@ namespace Persons
             switch (person)
             {
                 case Adult personAdult:
-                    Console.WriteLine($"Тип: Взрослый");  // ← ДОБАВЛЕНО
+                    Console.WriteLine($"Тип: Взрослый");
                     Console.WriteLine(personAdult.GetCar());
                     break;
                 case Child personChild:
-                    Console.WriteLine($"Тип: Ребёнок");   // ← ДОБАВЛЕНО
+                    Console.WriteLine($"Тип: Ребёнок");
                     Console.WriteLine(personChild.GetHobby());
                     break;
                 default:
-                    Console.WriteLine($"Тип: Неизвестный"); // ← ДОБАВЛЕНО
+                    Console.WriteLine($"Тип: Неизвестный");
                     break;
             }
 

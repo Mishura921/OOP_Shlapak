@@ -14,12 +14,12 @@ namespace PersonsClassLibrary
         private string _name;
 
         /// <summary>
-        /// Фамилия.
+        /// Фамилия персонажа.
         /// </summary>
         private string _surname;
 
         /// <summary>
-        /// Возраст.
+        /// Возраст персонажа.
         /// </summary>
         private int _age;
 
@@ -64,7 +64,7 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Свойство для получения или ввода возраста.
+        /// Свойство для получения или ввода возраста персонажа.
         /// </summary>
         public int Age
         {
@@ -78,7 +78,7 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Свойство для получения или ввода пола.
+        /// Свойство для получения или ввода пола персонажа.
         /// </summary>
         public Gender Gender { get; set; }
 
@@ -98,7 +98,7 @@ namespace PersonsClassLibrary
         }
 
         /// <summary>
-        /// Конструктор по умолчанию.
+        /// Конструктор базового класса по умолчанию
         /// </summary>
         protected PersonBase()
         { }
