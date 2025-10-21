@@ -42,7 +42,7 @@ namespace Model
         {
             get
             {
-                return Math.PI * Math.Pow(Radius, 2);
+                return Math.Round(Math.PI * Math.Pow(Radius, 2), 4);
             }
         }
     }
