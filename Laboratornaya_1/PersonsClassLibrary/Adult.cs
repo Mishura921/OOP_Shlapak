@@ -63,11 +63,26 @@ namespace ClassesPersons
         /// </summary>
         private const int SeriesPart2High = 25;
 
-        //TODO: rename
+        /// <summary>
+        /// Количество частей в серии и номере паспорта.
+        /// </summary>
+        private const int RequiredPartsCount = 2;
+
+        /// <summary>
+        /// Длина серии паспорта.
+        /// </summary>
+        private const int SeriesLength = 4;
+
+        /// <summary>
+        /// Длина номера паспорта.
+        /// </summary>
+        private const int NumberLength = 6;
+
+        // +TODO: rename
         /// <summary>
         /// Место работы
         /// </summary>
-        private string _employer;
+        private string _job;
 
         /// <summary>
         /// Супруг/супруга взрослого.
@@ -112,7 +127,7 @@ namespace ClassesPersons
         }
 
         /// <summary>
-        /// Серия и номер паспорта в формате СССС НННННH.
+        /// Серия и номер паспорта в формате СССС НННННН.
         /// </summary>
         public string PassportSeriesAndNumber
         {
@@ -120,14 +135,16 @@ namespace ClassesPersons
             set
             {
                 var parts = value.Split(' ');
-                //TODO: RSDN
-                //TODO: to const
-                if (parts.Length != 2 
-                    || parts[0].Length != 4 
-                    || parts[1].Length != 6)
+                // + TODO: RSDN
+                // + TODO: to const
+                if (parts.Length != RequiredPartsCount
+                    || parts[0].Length != SeriesLength
+                    || parts[1].Length != NumberLength)
+                {
                     throw new FormatException("Паспорт должен " +
                         "быть в формате: 'СССС НННННН' " +
                         "(например: '0122 302011').");
+                }
 
                 int series = int.Parse(parts[0]);
                 int number = int.Parse(parts[1]);
@@ -142,8 +159,8 @@ namespace ClassesPersons
         /// </summary>
         public string Employer
         {
-            get => _employer;
-            set => _employer = value
+            get => _job;
+            set => _job = value
                 ?? throw new ArgumentNullException(
                     nameof(Employer), "Место работы не может быть null");
         }
@@ -334,23 +351,31 @@ namespace ClassesPersons
             {
                 tmpSpouse = new Adult
                 {
-                    //TODO: formatting
-                    Gender = gender ==
-                        Gender.Male ? Gender.Female : Gender.Male,
-                    Name = gender ==
-                        Gender.Female ? maleNames[random.Next(maleNames.Length)]
+                    // + TODO: formatting
+                    Gender = gender == Gender.Male
+                        ? Gender.Female
+                        : Gender.Male,
+                    Name = gender == Gender.Female
+                        ? maleNames[random.Next(maleNames.Length)]
                         : femaleNames[random.Next(femaleNames.Length)],
                     Surname = surnames[random.Next(surnames.Length)]
                 };
             }
 
-            //TODO: formatting
+            // + TODO: formatting
             string? tmpEmployer = random.Next(1, 3) == 1
-                ? employers[random.Next(employers.Length)] : "Не работает";
+                ? employers[random.Next(employers.Length)]
+                : "Не работает";
 
-            return new Adult(tmpName, tmpSurname, tmpAge,
-                gender, tmpPassportSeries, tmpPassportNumber,
-                tmpSpouse, tmpEmployer);
+            return new Adult(
+                tmpName,
+                tmpSurname,
+                tmpAge,
+                gender,
+                tmpPassportSeries,
+                tmpPassportNumber,
+                tmpSpouse,
+                tmpEmployer);
         }
 
         /// <summary>

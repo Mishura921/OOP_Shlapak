@@ -39,19 +39,22 @@ namespace Persons
             _ = Console.ReadKey();
             Console.WriteLine();
             var person = listOfPeople.GetElement(3);
+
             switch (person)
             {
-                //TODO: RSDN
+                // + TODO: Добавить обработку других типов при необходимости
                 case Adult personAdult:
-                    Console.WriteLine($"Тип: Взрослый");
+                    Console.WriteLine("Тип: Взрослый");
                     Console.WriteLine(personAdult.GetCar());
                     break;
+
                 case Child personChild:
-                    Console.WriteLine($"Тип: Ребёнок");
+                    Console.WriteLine("Тип: Ребёнок");
                     Console.WriteLine(personChild.GetHobby());
                     break;
+
                 default:
-                    Console.WriteLine($"Тип: Неизвестный");
+                    Console.WriteLine("Тип: Неизвестный");
                     break;
             }
 
