@@ -49,7 +49,7 @@ namespace Persons
                         Console.WriteLine(personAdult.GetCar());
                     break;
                     }
-
+                    
                 case Child personChild:
                     { 
                     Console.WriteLine("Тип: Ребёнок");
