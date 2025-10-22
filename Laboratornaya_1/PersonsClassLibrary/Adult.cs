@@ -78,7 +78,6 @@ namespace ClassesPersons
         /// </summary>
         private const int NumberLength = 6;
 
-        // +TODO: rename
         /// <summary>
         /// Место работы
         /// </summary>
@@ -135,8 +134,6 @@ namespace ClassesPersons
             set
             {
                 var parts = value.Split(' ');
-                // + TODO: RSDN
-                // + TODO: to const
                 if (parts.Length != RequiredPartsCount
                     || parts[0].Length != SeriesLength
                     || parts[1].Length != NumberLength)
@@ -351,7 +348,6 @@ namespace ClassesPersons
             {
                 tmpSpouse = new Adult
                 {
-                    // + TODO: formatting
                     Gender = gender == Gender.Male
                         ? Gender.Female
                         : Gender.Male,
@@ -362,7 +358,6 @@ namespace ClassesPersons
                 };
             }
 
-            // + TODO: formatting
             string? tmpEmployer = random.Next(1, 3) == 1
                 ? employers[random.Next(employers.Length)]
                 : "Не работает";

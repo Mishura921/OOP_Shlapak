@@ -42,11 +42,13 @@ namespace Persons
 
             switch (person)
             {
-                // + TODO: Добавить обработку других типов при необходимости
+                //TODO: RSDN
                 case Adult personAdult:
+                {
                     Console.WriteLine("Тип: Взрослый");
-                    Console.WriteLine(personAdult.GetCar());
-                    break;
+                        Console.WriteLine(personAdult.GetCar());
+                        break; 
+                }
 
                 case Child personChild:
                     Console.WriteLine("Тип: Ребёнок");
