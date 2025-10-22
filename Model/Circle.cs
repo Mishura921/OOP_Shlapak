@@ -40,6 +40,7 @@ namespace Model
 
         public override double Square
         {
+            //TODO: round?
             get
             {
                 return Math.Round(Math.PI * Math.Pow(Radius, 2), 4);
