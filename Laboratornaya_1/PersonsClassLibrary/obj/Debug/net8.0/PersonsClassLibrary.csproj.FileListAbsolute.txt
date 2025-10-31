@@ -1,0 +1,12 @@
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\bin\Debug\net8.0\PersonsClassLibrary.deps.json
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\bin\Debug\net8.0\PersonsClassLibrary.dll
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\bin\Debug\net8.0\PersonsClassLibrary.pdb
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\obj\Debug\net8.0\PersonsClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\obj\Debug\net8.0\PersonsClassLibrary.AssemblyInfoInputs.cache
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\obj\Debug\net8.0\PersonsClassLibrary.AssemblyInfo.cs
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\obj\Debug\net8.0\PersonsClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\obj\Debug\net8.0\PersonsClassLibrary.sourcelink.json
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\obj\Debug\net8.0\PersonsClassLibrary.dll
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\obj\Debug\net8.0\refint\PersonsClassLibrary.dll
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\obj\Debug\net8.0\PersonsClassLibrary.pdb
+C:\Users\aakalentev\source\repos\О-5КМ31\Shlapak\Laboratornaya_1\PersonsClassLibrary\obj\Debug\net8.0\ref\PersonsClassLibrary.dll

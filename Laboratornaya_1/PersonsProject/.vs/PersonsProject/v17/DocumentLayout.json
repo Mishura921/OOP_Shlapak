@@ -1,0 +1,113 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\aakalentev\\source\\repos\\\u041E-5\u041A\u041C31\\Shlapak\\Laboratornaya_1\\PersonsProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{27277319-4751-4EB9-80C5-A1D32BA900FC}|PersonsProject.csproj|c:\\users\\aakalentev\\source\\repos\\\u043E-5\u043A\u043C31\\shlapak\\laboratornaya_1\\personsproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27277319-4751-4EB9-80C5-A1D32BA900FC}|PersonsProject.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B68C54-993D-4FE3-8EBF-62E7ECB9E289}|..\\PersonsClassLibrary\\PersonsClassLibrary.csproj|c:\\users\\aakalentev\\source\\repos\\\u043E-5\u043A\u043C31\\shlapak\\laboratornaya_1\\personsclasslibrary\\child.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B68C54-993D-4FE3-8EBF-62E7ECB9E289}|..\\PersonsClassLibrary\\PersonsClassLibrary.csproj|c:\\users\\aakalentev\\source\\repos\\\u043E-5\u043A\u043C31\\shlapak\\laboratornaya_1\\personsclasslibrary\\adult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B68C54-993D-4FE3-8EBF-62E7ECB9E289}|..\\PersonsClassLibrary\\PersonsClassLibrary.csproj|c:\\users\\aakalentev\\source\\repos\\\u043E-5\u043A\u043C31\\shlapak\\laboratornaya_1\\personsclasslibrary\\personbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\aakalentev\\source\\repos\\\u041E-5\u041A\u041C31\\Shlapak\\Laboratornaya_1\\PersonsProject\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\aakalentev\\source\\repos\\\u041E-5\u041A\u041C31\\Shlapak\\Laboratornaya_1\\PersonsProject\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAgwBkAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T06:16:34.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Child.cs",
+              "DocumentMoniker": "C:\\Users\\aakalentev\\source\\repos\\\u041E-5\u041A\u041C31\\Shlapak\\Laboratornaya_1\\PersonsClassLibrary\\Child.cs",
+              "RelativeDocumentMoniker": "..\\PersonsClassLibrary\\Child.cs",
+              "ToolTip": "C:\\Users\\aakalentev\\source\\repos\\\u041E-5\u041A\u041C31\\Shlapak\\Laboratornaya_1\\PersonsClassLibrary\\Child.cs",
+              "RelativeToolTip": "..\\PersonsClassLibrary\\Child.cs",
+              "ViewState": "AQIAAPYAAAAAAAAAAAAkwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T06:16:00.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PersonBase.cs",
+              "DocumentMoniker": "C:\\Users\\aakalentev\\source\\repos\\\u041E-5\u041A\u041C31\\Shlapak\\Laboratornaya_1\\PersonsClassLibrary\\PersonBase.cs",
+              "RelativeDocumentMoniker": "..\\PersonsClassLibrary\\PersonBase.cs",
+              "ToolTip": "C:\\Users\\aakalentev\\source\\repos\\\u041E-5\u041A\u041C31\\Shlapak\\Laboratornaya_1\\PersonsClassLibrary\\PersonBase.cs",
+              "RelativeToolTip": "..\\PersonsClassLibrary\\PersonBase.cs",
+              "ViewState": "AQIAAN8AAAAAAAAAAAAUwCEAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T06:12:20.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Adult.cs",
+              "DocumentMoniker": "C:\\Users\\aakalentev\\source\\repos\\\u041E-5\u041A\u041C31\\Shlapak\\Laboratornaya_1\\PersonsClassLibrary\\Adult.cs",
+              "RelativeDocumentMoniker": "..\\PersonsClassLibrary\\Adult.cs",
+              "ToolTip": "C:\\Users\\aakalentev\\source\\repos\\\u041E-5\u041A\u041C31\\Shlapak\\Laboratornaya_1\\PersonsClassLibrary\\Adult.cs",
+              "RelativeToolTip": "..\\PersonsClassLibrary\\Adult.cs",
+              "ViewState": "AQIAAF4BAAAAAAAAAAAqwFoBAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T06:12:11.227Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
