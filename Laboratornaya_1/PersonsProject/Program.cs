@@ -42,26 +42,23 @@ namespace Persons
 
             switch (person)
             {
-                //TODO: RSDN +
                 case Adult personAdult:
-                    {
+                {
                     Console.WriteLine("Тип: Взрослый");
                         Console.WriteLine(personAdult.GetCar());
                     break;
-                    }
-                    
+                }
                 case Child personChild:
-                    { 
+                { 
                     Console.WriteLine("Тип: Ребёнок");
                         Console.WriteLine(personChild.GetHobby());
                     break;
-                    }
-
+                }
                 default:
-                    {
+                {
                     Console.WriteLine("Тип: Неизвестный");
                     break;
-                    }
+                }
             }
 
             _ = Console.ReadKey();
