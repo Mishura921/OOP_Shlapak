@@ -25,8 +25,7 @@ namespace ConsoleLoader
                 Console.WriteLine("4 - Завершение работы");
                 var consoleKey = Console.ReadLine();
                 switch (consoleKey)
-                {   
-                    //TODO: RSDN+
+                {
                     case "1":
                     {
                         GetSquareInfo(AddConsoleFigure.
