@@ -26,26 +26,36 @@ namespace ConsoleLoader
                 var consoleKey = Console.ReadLine();
                 switch (consoleKey)
                 {   
-                    //TODO: RSDN
+                    //TODO: RSDN+
                     case "1":
+                        {
                             GetSquareInfo(AddConsoleFigure.
                                 GetNewTriangleFromKeyboard());
-                        break;
+                            break;
+                        }
                     case "2":
+                        {
                             GetSquareInfo(AddConsoleFigure.
                                 GetNewRectangleFromKeyboard());
                             break;
+                        }
                     case "3":
+                        {
                             GetSquareInfo(AddConsoleFigure.
                                 GetNewCircleFromKeyboard());
                             break;
+                        }
                     case "4":
+                        {
                             Environment.Exit(0);
                             break;
+                        }
                     default:
+                        {
                             Console.WriteLine("Ошибка: " +
                                 "ожидается целое число от 1 до 4.");
                             break;
+                        }
                 }
             }
         }
