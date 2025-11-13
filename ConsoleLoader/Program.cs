@@ -26,7 +26,7 @@ namespace ConsoleLoader
                 var consoleKey = Console.ReadLine();
                 switch (consoleKey)
                 {   
-                    //TODO: RSDN+
+                    //TODO: RSDN
                     case "1":
                         {
                             GetSquareInfo(AddConsoleFigure.
