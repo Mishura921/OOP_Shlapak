@@ -38,8 +38,6 @@ namespace View
             WidthTextbox.TextChanged += ShowOKButton;
             HeightTextbox.TextChanged += ShowOKButton;
             RadiusTextbox.TextChanged += ShowOKButton;
-
-            // Скрываем все элементы при запуске
             HideAllControls();
         }
 
@@ -104,7 +102,7 @@ namespace View
         }
 
         /// <summary>
-        /// Изменение размера группы параметров в зависимости от количества элементов
+        /// Динамическое изменение размера группы параметров в зависимости от количества элементов
         /// </summary>
         /// <param name="controlsCount">Количество видимых элементов</param>
         private void ResizeGroupBox(int controlsCount)
@@ -131,7 +129,8 @@ namespace View
         }
 
         /// <summary>
-        /// Событие при выборе фигуры в меню добавления
+        /// 
+        /// 
         /// </summary>
         private void FigureChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -293,10 +292,6 @@ namespace View
                     break;
             }
         }
-
-        /// <summary>
-        /// Закрытие формы
-        /// </summary>
         private void CloseFormButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
