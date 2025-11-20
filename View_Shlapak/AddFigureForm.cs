@@ -18,13 +18,7 @@ namespace View
         /// <summary>
         /// Свойство для вывода данных о фигуре
         /// </summary>
-        public FigureBase FigureData
-        {
-            get
-            {
-                return _figure;
-            }
-        }
+        public FigureBase FigureData => _figure;
 
         /// <summary>
         /// Инициализация формы
@@ -67,6 +61,7 @@ namespace View
 
             switch (figure)
             {
+                //TODO: RSDN
                 case Rectangle _:
                     LengthTextbox.Visible = true;
                     LengthLabel.Visible = true;
@@ -107,6 +102,7 @@ namespace View
         /// <param name="controlsCount">Количество видимых элементов</param>
         private void ResizeGroupBox(int controlsCount)
         {
+            //TODO: comments
             int baseHeight = 40; //???15
             int controlHeight = 25;
 
@@ -125,6 +121,8 @@ namespace View
             CloseFormButton.Location = new System.Drawing.Point(122, buttonY);
 
             // Изменяем размер формы (компактнее)
+            //TODO: comments
+
             this.Height = buttonY + OkAddFigureButton.Height + 40; //50...
         }
 
@@ -136,6 +134,7 @@ namespace View
         {
             switch (FigureChoiceComboBox.SelectedIndex)
             {
+                //TODO: RSDN
                 case 0:
                     _figure = new Rectangle();
                     MakeVisible(_figure);
@@ -182,6 +181,7 @@ namespace View
             var newRectangle = new Rectangle();
             var actions = new List<Action>()
             {
+                //TODO: RSDN
                 new Action(() => newRectangle.Length = Convert.ToDouble(LengthTextbox.Text)),
                 new Action(() => newRectangle.Width = Convert.ToDouble(WidthTextbox.Text))
             };
@@ -197,6 +197,7 @@ namespace View
             var newTriangle = new Triangle();
             var actions = new List<Action>()
             {
+                //TODO: RSDN
                 new Action(() => newTriangle.Length = Convert.ToDouble(LengthTextbox.Text)),
                 new Action(() => newTriangle.Height = Convert.ToDouble(HeightTextbox.Text))
             };
@@ -212,6 +213,7 @@ namespace View
             var newCircle = new Circle();
             var actions = new List<Action>()
             {
+                //TODO: RSDN
                 new Action(() => newCircle.Radius = Convert.ToDouble(RadiusTextbox.Text))
             };
             actions.ForEach(SetValue);
@@ -225,6 +227,7 @@ namespace View
         {
             switch (_figure)
             {
+                //TODO: RSDN
                 case Rectangle _:
                     _figure = GetNewRectangle();
                     break;
@@ -252,6 +255,7 @@ namespace View
             }
             catch
             {
+                //TODO: RSDN
                 MessageBox.Show("Введено некорректное значение, проверьте данные!\n" +
                     "Вы должны ввести одно положительное десятичное число в каждое текстовое поле." +
                     " В качестве разделителя используйте запятую.", "Ошибка",
@@ -266,7 +270,8 @@ namespace View
         private void NumericTextboxKeyPress(object sender, KeyPressEventArgs e)
         {
             if (double.TryParse(((TextBox)sender).Text + e.KeyChar, out _)
-                || e.KeyChar == (char)Keys.Back) return;
+                || e.KeyChar == (char)Keys.Back) 
+                return;
         }
 
         /// <summary>
@@ -276,6 +281,7 @@ namespace View
         {
             switch (FigureChoiceComboBox.SelectedIndex)
             {
+                //TODO: RSDN
                 case 0:
                     OkAddFigureButton.Enabled = LengthTextbox.Text.Length > 0
                         && WidthTextbox.Text.Length > 0;
@@ -292,6 +298,7 @@ namespace View
                     break;
             }
         }
+        //TODO: XML
         private void CloseFormButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

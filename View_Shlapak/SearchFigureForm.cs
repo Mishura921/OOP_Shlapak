@@ -41,7 +41,8 @@ namespace View
             KeyPressEventArgs e)
         {
             if (double.TryParse(((TextBox)sender).Text + e.KeyChar, out _)
-                || e.KeyChar == (char)Keys.Back) return;
+                || e.KeyChar == (char)Keys.Back) 
+                return;
         }
 
         /// <summary>
@@ -77,10 +78,7 @@ namespace View
                 return;
             }
 
-            // Значение площади, введённое пользователем для фильтрации.
             double filterSquare = 0;
-
-            // Флаг, указывающий, используется ли фильтрация по площади.
             bool hasSquare = false;
 
             if (CheckBoxSquare.Checked)
@@ -94,7 +92,6 @@ namespace View
                     return;
                 }
 
-                // Проверка, что введено число с запятой
                 if (!double.TryParse(TextBoxSquare.Text,
                     System.Globalization.NumberStyles.Any,
                     new System.Globalization.CultureInfo("ru-RU"),

@@ -122,6 +122,7 @@ namespace View
             }
             else
             {
+                //TODO: RSDN
                 // Сброс фильтра, когда отфильтрованный список пуст, а основной нет
                 if (_listForSearch.Count == 0 && DataFigureView.DataSource == _listForSearch)
                 {
@@ -171,7 +172,8 @@ namespace View
         /// </summary>
         private void SaveToolStripMenuItemClick(object sender, EventArgs e)
         {
-            if (!EnsureFigureListNotEmpty("Отсутствуют данные для сохранения.")) return;
+            if (!EnsureFigureListNotEmpty("Отсутствуют данные для сохранения.")) 
+                return;
 
             var saveFileDialog = new SaveFileDialog
             {
