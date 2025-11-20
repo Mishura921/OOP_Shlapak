@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
 namespace Model
@@ -11,7 +10,6 @@ namespace Model
     [XmlInclude(typeof(Rectangle))]
     [XmlInclude(typeof(Triangle))]
     [XmlInclude(typeof(Circle))]
-
     public abstract class FigureBase
     {
         /// <summary>
