@@ -55,7 +55,6 @@ namespace View
             CreateTable(_figureList, DataFigureView);
         }
 
-
         /// <summary>
         /// Событие при добавлении фигуры
         /// </summary>
@@ -122,9 +121,10 @@ namespace View
             }
             else
             {
-                //TODO: RSDN
+                //TODO: RSDN+
                 // Сброс фильтра, когда отфильтрованный список пуст, а основной нет
-                if (_listForSearch.Count == 0 && DataFigureView.DataSource == _listForSearch)
+                if (_listForSearch.Count == 0 &&
+                    DataFigureView.DataSource == _listForSearch)
                 {
                     DropFilterButton_Click(this, EventArgs.Empty);
                 }
@@ -172,7 +172,8 @@ namespace View
         /// </summary>
         private void SaveToolStripMenuItemClick(object sender, EventArgs e)
         {
-            if (!EnsureFigureListNotEmpty("Отсутствуют данные для сохранения.")) 
+            if (!EnsureFigureListNotEmpty("Отсутствуют данные " +
+                "для сохранения.")) 
                 return;
 
             var saveFileDialog = new SaveFileDialog
@@ -267,8 +268,8 @@ namespace View
         private void DeleteAllFugureButton_Click(object sender, EventArgs e)
         {
             // Определяем, с каким списком работаем
-            var currentList = (DataFigureView.DataSource == _listForSearch) ?
-                _listForSearch : _figureList;
+            var currentList = (DataFigureView.DataSource 
+                == _listForSearch) ?_listForSearch : _figureList;
 
             if (currentList.Count == 0)
             {
@@ -278,17 +279,19 @@ namespace View
                 return;
             }
 
-            // Определяем текст сообщения в зависимости от того, фильтруем или нет
             string message;
-            if (DataFigureView.DataSource == _listForSearch && _listForSearch.Count > 0)
+            if (DataFigureView.DataSource == _listForSearch 
+                && _listForSearch.Count > 0)
             {
-                message = "Вы уверены, что хотите удалить все ОТФИЛЬТРОВАННЫЕ фигуры из списка?\n" +
-                          $"Будет удалено {_listForSearch.Count} фигур(ы).";
+                message = "Вы уверены, что хотите удалить все " +
+                    "отфильтрованные фигуры из списка?\n" +
+                    $"Будет удалено {_listForSearch.Count} фигур(ы).";
             }
             else
             {
-                message = "Вы уверены, что хотите удалить все фигуры из основного списка?\n" +
-                          $"Будет удалено {_figureList.Count} фигур(ы).";
+                message = "Вы уверены, что хотите удалить все " +
+                    "фигуры из основного списка?\n" +
+                    $"Будет удалено {_figureList.Count} фигур(ы).";
             }
 
             var result = MessageBox.Show(message,
@@ -297,28 +300,24 @@ namespace View
 
             if (result == DialogResult.Yes)
             {
-                if (DataFigureView.DataSource == _listForSearch && _listForSearch.Count > 0)
+                if (DataFigureView.DataSource == _listForSearch 
+                    && _listForSearch.Count > 0)
                 {
-                    // Удаляем только отфильтрованные фигуры из основного списка
                     foreach (var figure in _listForSearch)
                     {
                         _figureList.Remove(figure);
                     }
-                    // Очищаем список фильтрации
                     _listForSearch.Clear();
-                    // Обновляем отображение
                     CreateTable(_listForSearch, DataFigureView);
                 }
                 else
                 {
-                    // Удаляем все фигуры из основного списка
                     _figureList.Clear();
                     _listForSearch.Clear();
                     DataFigureView.DataSource = null;
                     CreateTable(_figureList, DataFigureView);
                 }
-
-                // Сброс фильтра, если удалили все фигуры из основного списка
+                
                 if (_figureList.Count == 0)
                 {
                     DropFilterButton_Click(this, EventArgs.Empty);

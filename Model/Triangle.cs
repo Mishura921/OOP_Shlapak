@@ -55,7 +55,6 @@ namespace Model
         /// </summary>
         public override string FigureType => "Треугольник";
 
-
         /// <summary>
         /// Вычисление площади треугольника
         /// </summary>

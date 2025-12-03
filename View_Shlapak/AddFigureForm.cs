@@ -61,8 +61,9 @@ namespace View
 
             switch (figure)
             {
-                //TODO: RSDN
+                //TODO: RSDN+
                 case Rectangle _:
+                {
                     LengthTextbox.Visible = true;
                     LengthLabel.Visible = true;
                     WidthTextbox.Visible = true;
@@ -71,7 +72,9 @@ namespace View
                     WidthLabel.Text = "Ширина:";
                     visibleControlsCount = 2;
                     break;
+                }
                 case Triangle _:
+                {
                     LengthTextbox.Visible = true;
                     LengthLabel.Visible = true;
                     HeightTextbox.Visible = true;
@@ -80,19 +83,21 @@ namespace View
                     HeightLabel.Text = "Высота:";
                     visibleControlsCount = 2;
                     break;
+                }
                 case Circle _:
+                {
                     RadiusTextbox.Visible = true;
                     RadiusLabel.Visible = true;
                     visibleControlsCount = 1;
                     break;
+                }
                 default:
-                    throw new ArgumentException("Вы не выбрали тип фигуры :(");
+                {
+                    throw new ArgumentException("Вы не выбрали тип фигуры...");
+                }
             }
 
-            // Динамически изменяем размер groupBox2
             ResizeGroupBox(visibleControlsCount);
-
-            // Перемещаем кнопки в зависимости от размера groupBox2
             MoveButtons();
         }
 
@@ -102,8 +107,8 @@ namespace View
         /// <param name="controlsCount">Количество видимых элементов</param>
         private void ResizeGroupBox(int controlsCount)
         {
-            //TODO: comments
-            int baseHeight = 40; //???15
+            //TODO: comments+
+            int baseHeight = 15;
             int controlHeight = 25;
 
             int newHeight = baseHeight + (controlsCount * controlHeight);
@@ -120,36 +125,40 @@ namespace View
             OkAddFigureButton.Location = new System.Drawing.Point(12, buttonY);
             CloseFormButton.Location = new System.Drawing.Point(122, buttonY);
 
-            // Изменяем размер формы (компактнее)
-            //TODO: comments
-
-            this.Height = buttonY + OkAddFigureButton.Height + 40; //50...
+            //TODO: comments+
+            this.Height = buttonY + OkAddFigureButton.Height + 50;
         }
 
         /// <summary>
-        /// 
-        /// 
+        /// Обработка изменения выбранной фигуры в комбобоксе
         /// </summary>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void FigureChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (FigureChoiceComboBox.SelectedIndex)
             {
-                //TODO: RSDN
+                //TODO: RSDN+
                 case 0:
+                {
                     _figure = new Rectangle();
                     MakeVisible(_figure);
                     break;
+                }
                 case 1:
+                {
                     _figure = new Triangle();
                     MakeVisible(_figure);
                     break;
+                }
                 case 2:
+                {
                     _figure = new Circle();
                     MakeVisible(_figure);
                     break;
+                }
             }
 
-            // ТА САМАЯ ФУНКЦИЯ (если фигуру меняем, поля очищаюттся)
             ClearAllFields();
             OkAddFigureButton.Enabled = false;
         }
@@ -181,9 +190,11 @@ namespace View
             var newRectangle = new Rectangle();
             var actions = new List<Action>()
             {
-                //TODO: RSDN
-                new Action(() => newRectangle.Length = Convert.ToDouble(LengthTextbox.Text)),
-                new Action(() => newRectangle.Width = Convert.ToDouble(WidthTextbox.Text))
+                //TODO: RSDN+
+                new Action(() => newRectangle.Length = 
+                    Convert.ToDouble(LengthTextbox.Text)),
+                new Action(() => newRectangle.Width = 
+                    Convert.ToDouble(WidthTextbox.Text))
             };
             actions.ForEach(SetValue);
             return newRectangle;
@@ -197,9 +208,11 @@ namespace View
             var newTriangle = new Triangle();
             var actions = new List<Action>()
             {
-                //TODO: RSDN
-                new Action(() => newTriangle.Length = Convert.ToDouble(LengthTextbox.Text)),
-                new Action(() => newTriangle.Height = Convert.ToDouble(HeightTextbox.Text))
+                //TODO: RSDN+
+                new Action(() => newTriangle.Length = 
+                    Convert.ToDouble(LengthTextbox.Text)),
+                new Action(() => newTriangle.Height = 
+                    Convert.ToDouble(HeightTextbox.Text))
             };
             actions.ForEach(SetValue);
             return newTriangle;
@@ -213,8 +226,9 @@ namespace View
             var newCircle = new Circle();
             var actions = new List<Action>()
             {
-                //TODO: RSDN
-                new Action(() => newCircle.Radius = Convert.ToDouble(RadiusTextbox.Text))
+                //TODO: RSDN+
+                new Action(() => newCircle.Radius = 
+                    Convert.ToDouble(RadiusTextbox.Text))
             };
             actions.ForEach(SetValue);
             return newCircle;
@@ -227,18 +241,26 @@ namespace View
         {
             switch (_figure)
             {
-                //TODO: RSDN
+                //TODO: RSDN+
                 case Rectangle _:
+                {
                     _figure = GetNewRectangle();
                     break;
+                }
                 case Triangle _:
+                {
                     _figure = GetNewTriangle();
                     break;
+                }
                 case Circle _:
+                {
                     _figure = GetNewCircle();
                     break;
+                }
                 default:
-                    throw new ArgumentException("Такой фигуры нет в природе.");
+                {
+                    throw new ArgumentException("Такой фигуры не существует.");
+                }
             }
         }
 
@@ -255,11 +277,15 @@ namespace View
             }
             catch
             {
-                //TODO: RSDN
-                MessageBox.Show("Введено некорректное значение, проверьте данные!\n" +
-                    "Вы должны ввести одно положительное десятичное число в каждое текстовое поле." +
-                    " В качестве разделителя используйте запятую.", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //TODO: RSDN+
+                MessageBox.Show(
+                    "Введено некорректное значение, проверьте данные!\n" +
+                    "Вы должны ввести одно положительное десятичное число " +
+                    "в каждое текстовое поле.\n" +
+                    "В качестве разделителя используйте запятую.",
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 ClearAllFields();
             }
         }
@@ -281,24 +307,40 @@ namespace View
         {
             switch (FigureChoiceComboBox.SelectedIndex)
             {
-                //TODO: RSDN
+                //TODO: RSDN+
                 case 0:
-                    OkAddFigureButton.Enabled = LengthTextbox.Text.Length > 0
-                        && WidthTextbox.Text.Length > 0;
+                {
+                    OkAddFigureButton.Enabled =
+                        LengthTextbox.Text.Length > 0 &&
+                        WidthTextbox.Text.Length > 0;
                     break;
+                }
                 case 1:
-                    OkAddFigureButton.Enabled = LengthTextbox.Text.Length > 0
-                        && HeightTextbox.Text.Length > 0;
+                {
+                    OkAddFigureButton.Enabled =
+                        LengthTextbox.Text.Length > 0 &&
+                        HeightTextbox.Text.Length > 0;
                     break;
+                }
                 case 2:
-                    OkAddFigureButton.Enabled = RadiusTextbox.Text.Length > 0;
+                {
+                    OkAddFigureButton.Enabled =
+                        RadiusTextbox.Text.Length > 0;
                     break;
+                }
                 default:
+                {
                     OkAddFigureButton.Enabled = false;
                     break;
+                }
             }
         }
-        //TODO: XML
+        //TODO: XML+
+        /// <summary>
+        /// Обработчик нажатия кнопки "Закрыть"
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события нажатия кнопки</param>
         private void CloseFormButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
