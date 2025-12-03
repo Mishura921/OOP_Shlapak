@@ -78,7 +78,7 @@ namespace View
             this.AddFigureButton.Name = "AddFigureButton";
             this.AddFigureButton.Size = new System.Drawing.Size(117, 21);
             this.AddFigureButton.TabIndex = 1;
-            this.AddFigureButton.Text = "Добавить...";
+            this.AddFigureButton.Text = "Добавить";
             this.AddFigureButton.UseVisualStyleBackColor = true;
             this.AddFigureButton.Click += new System.EventHandler(this.AddFigureButton_Click);
             // 
@@ -100,7 +100,7 @@ namespace View
             this.SearchFigureButton.Name = "SearchFigureButton";
             this.SearchFigureButton.Size = new System.Drawing.Size(117, 21);
             this.SearchFigureButton.TabIndex = 3;
-            this.SearchFigureButton.Text = "Найти...";
+            this.SearchFigureButton.Text = "Найти";
             this.SearchFigureButton.UseVisualStyleBackColor = true;
             this.SearchFigureButton.Click += new System.EventHandler(this.SearchFigureButton_Click);
             // 
