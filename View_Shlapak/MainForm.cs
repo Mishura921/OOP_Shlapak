@@ -266,23 +266,65 @@ namespace View
         /// </summary>
         private void DeleteAllFugureButton_Click(object sender, EventArgs e)
         {
-            if (!EnsureFigureListNotEmpty()) return;
+            // Определяем, с каким списком работаем
+            var currentList = (DataFigureView.DataSource == _listForSearch) ?
+                _listForSearch : _figureList;
 
-            var result = MessageBox.Show("Вы уверены, что " +
-                "хотите удалить все фигуры из списка?",
+            if (currentList.Count == 0)
+            {
+                MessageBox.Show("Список фигур пуст.",
+                    "Информация", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            // Определяем текст сообщения в зависимости от того, фильтруем или нет
+            string message;
+            if (DataFigureView.DataSource == _listForSearch && _listForSearch.Count > 0)
+            {
+                message = "Вы уверены, что хотите удалить все ОТФИЛЬТРОВАННЫЕ фигуры из списка?\n" +
+                          $"Будет удалено {_listForSearch.Count} фигур(ы).";
+            }
+            else
+            {
+                message = "Вы уверены, что хотите удалить все фигуры из основного списка?\n" +
+                          $"Будет удалено {_figureList.Count} фигур(ы).";
+            }
+
+            var result = MessageBox.Show(message,
                 "Подтверждение", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
+
             if (result == DialogResult.Yes)
             {
-                _figureList.Clear();
-                _listForSearch.Clear();
-                DataFigureView.DataSource = null;
-                CreateTable(_figureList, DataFigureView);
+                if (DataFigureView.DataSource == _listForSearch && _listForSearch.Count > 0)
+                {
+                    // Удаляем только отфильтрованные фигуры из основного списка
+                    foreach (var figure in _listForSearch)
+                    {
+                        _figureList.Remove(figure);
+                    }
+                    // Очищаем список фильтрации
+                    _listForSearch.Clear();
+                    // Обновляем отображение
+                    CreateTable(_listForSearch, DataFigureView);
+                }
+                else
+                {
+                    // Удаляем все фигуры из основного списка
+                    _figureList.Clear();
+                    _listForSearch.Clear();
+                    DataFigureView.DataSource = null;
+                    CreateTable(_figureList, DataFigureView);
+                }
 
-                // Сброс фильтра
-                DropFilterButton_Click(this, EventArgs.Empty);
+                // Сброс фильтра, если удалили все фигуры из основного списка
+                if (_figureList.Count == 0)
+                {
+                    DropFilterButton_Click(this, EventArgs.Empty);
+                }
 
-                MessageBox.Show("Список фигур успешно очищен.",
+                MessageBox.Show("Операция удаления завершена.",
                     "Успех", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
