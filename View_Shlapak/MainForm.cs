@@ -121,7 +121,6 @@ namespace View
             }
             else
             {
-                //TODO: RSDN+
                 // Сброс фильтра, когда отфильтрованный список пуст, а основной нет
                 if (_listForSearch.Count == 0 &&
                     DataFigureView.DataSource == _listForSearch)
