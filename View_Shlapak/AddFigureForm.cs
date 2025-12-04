@@ -20,6 +20,8 @@ namespace View
         /// </summary>
         public FigureBase FigureData => _figure;
 
+        private FigureType _figureType;
+
         /// <summary>
         /// Инициализация формы
         /// </summary>
@@ -54,15 +56,14 @@ namespace View
         /// Установка видимых TextBox в зависимости от выбранной фигуры
         /// </summary>
         /// <param name="figure">Фигура</param>
-        private void MakeVisible(FigureBase figure)
+        private void MakeVisible(FigureType figureType)
         {
             HideAllControls();
             int visibleControlsCount = 0;
 
-            switch (figure)
+            switch (figureType)
             {
-                //TODO: RSDN+
-                case Rectangle _:
+                case FigureType.Rectangular:
                 {
                     LengthTextbox.Visible = true;
                     LengthLabel.Visible = true;
@@ -73,7 +74,7 @@ namespace View
                     visibleControlsCount = 2;
                     break;
                 }
-                case Triangle _:
+                case FigureType.Triangle:
                 {
                     LengthTextbox.Visible = true;
                     LengthLabel.Visible = true;
@@ -84,7 +85,7 @@ namespace View
                     visibleControlsCount = 2;
                     break;
                 }
-                case Circle _:
+                case FigureType.Circle:
                 {
                     RadiusTextbox.Visible = true;
                     RadiusLabel.Visible = true;
@@ -107,7 +108,7 @@ namespace View
         /// <param name="controlsCount">Количество видимых элементов</param>
         private void ResizeGroupBox(int controlsCount)
         {
-            //TODO: comments+
+            //TODO: const
             int baseHeight = 15;
             int controlHeight = 25;
 
@@ -120,12 +121,12 @@ namespace View
         /// </summary>
         private void MoveButtons()
         {
+            //TODO: const?
             int buttonY = groupBox2.Top + groupBox2.Height + 5;
 
             OkAddFigureButton.Location = new System.Drawing.Point(12, buttonY);
             CloseFormButton.Location = new System.Drawing.Point(122, buttonY);
 
-            //TODO: comments+
             this.Height = buttonY + OkAddFigureButton.Height + 50;
         }
 
@@ -138,22 +139,21 @@ namespace View
         {
             switch (FigureChoiceComboBox.SelectedIndex)
             {
-                //TODO: RSDN+
                 case 0:
                 {
-                    _figure = new Rectangle();
+                    _figureType = FigureType.Rectangular;
                     MakeVisible(_figure);
                     break;
                 }
                 case 1:
                 {
-                    _figure = new Triangle();
+                    _figureType = FigureType.Triangle;
                     MakeVisible(_figure);
                     break;
                 }
                 case 2:
                 {
-                    _figure = new Circle();
+                    _figureType = FigureType.Circle;
                     MakeVisible(_figure);
                     break;
                 }
@@ -190,7 +190,6 @@ namespace View
             var newRectangle = new Rectangle();
             var actions = new List<Action>()
             {
-                //TODO: RSDN+
                 new Action(() => newRectangle.Length = 
                     Convert.ToDouble(LengthTextbox.Text)),
                 new Action(() => newRectangle.Width = 
@@ -208,7 +207,6 @@ namespace View
             var newTriangle = new Triangle();
             var actions = new List<Action>()
             {
-                //TODO: RSDN+
                 new Action(() => newTriangle.Length = 
                     Convert.ToDouble(LengthTextbox.Text)),
                 new Action(() => newTriangle.Height = 
@@ -226,7 +224,6 @@ namespace View
             var newCircle = new Circle();
             var actions = new List<Action>()
             {
-                //TODO: RSDN+
                 new Action(() => newCircle.Radius = 
                     Convert.ToDouble(RadiusTextbox.Text))
             };
@@ -237,25 +234,21 @@ namespace View
         /// <summary>
         /// Ввод данных о фигурах
         /// </summary>
-        private void InsertData()
+        private FigureBase InsertData(FigureBase figure)
         {
-            switch (_figure)
+            switch (figure)
             {
-                //TODO: RSDN+
                 case Rectangle _:
                 {
-                    _figure = GetNewRectangle();
-                    break;
+                    return GetNewRectangle();
                 }
                 case Triangle _:
                 {
-                    _figure = GetNewTriangle();
-                    break;
+                    return GetNewTriangle();
                 }
                 case Circle _:
                 {
-                    _figure = GetNewCircle();
-                    break;
+                    return GetNewCircle();
                 }
                 default:
                 {
@@ -271,13 +264,12 @@ namespace View
         {
             try
             {
-                InsertData();
+                _figure = InsertData(_figure);
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch
             {
-                //TODO: RSDN+
                 MessageBox.Show(
                     "Введено некорректное значение, проверьте данные!\n" +
                     "Вы должны ввести одно положительное десятичное число " +
@@ -307,7 +299,6 @@ namespace View
         {
             switch (FigureChoiceComboBox.SelectedIndex)
             {
-                //TODO: RSDN+
                 case 0:
                 {
                     OkAddFigureButton.Enabled =
@@ -335,7 +326,7 @@ namespace View
                 }
             }
         }
-        //TODO: XML+
+
         /// <summary>
         /// Обработчик нажатия кнопки "Закрыть"
         /// </summary>
