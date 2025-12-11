@@ -1,6 +1,5 @@
 ﻿namespace Model
 {
-    //TODO: XML+
     /// <summary>
     /// Типы фигур
     /// </summary>

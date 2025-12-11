@@ -151,7 +151,6 @@ namespace View
         /// <param name="controlsCount">Количество видимых элементов</param>
         private void ResizeGroupBox(int controlsCount)
         {
-            //TODO: const+
             int newHeight = GROUPBOX_BASE_HEIGHT + (controlsCount * CONTROL_HEIGHT);
             groupBox2.Height = newHeight;
         }
@@ -161,7 +160,6 @@ namespace View
         /// </summary>
         private void MoveButtons()
         {
-            //TODO: const+
             int buttonY = groupBox2.Top + groupBox2.Height + BUTTON_MARGIN_TOP;
 
             OkAddFigureButton.Location = new System.Drawing.Point
@@ -285,21 +283,21 @@ namespace View
             switch (_figureType)
             {
                 case FigureType.Rectangle:
-                    {
-                        return GetNewRectangle();
-                    }
+                {
+                    return GetNewRectangle();
+                }
                 case FigureType.Triangle:
-                    {
-                        return GetNewTriangle();
-                    }
+                {
+                    return GetNewTriangle();
+                }
                 case FigureType.Circle:
-                    {
-                        return GetNewCircle();
-                    }
+                {
+                    return GetNewCircle();
+                }
                 default:
-                    {
-                        throw new ArgumentException("Неизвестный тип фигуры.");
-                    }
+                {
+                    throw new ArgumentException("Неизвестный тип фигуры.");
+                }
             }
         }
 
