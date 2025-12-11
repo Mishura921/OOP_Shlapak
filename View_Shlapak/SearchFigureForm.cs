@@ -98,8 +98,9 @@ namespace View
                     out filterSquare))
                 {
                     MessageBox.Show(
-                        "Некорректное значение площади! Используйте число с запятой.",
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "Некорректное значение площади! Используйте " +
+                        "число с запятой.", "Ошибка", MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                     return;
                 }
                 filterSquare = Math.Round(filterSquare, 3);

@@ -34,7 +34,6 @@ namespace Model
         /// </summary>
         public override string FigureType => "Круг";
 
-
         /// <summary>
         /// Вычисление площади круга
         /// </summary>

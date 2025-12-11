@@ -1,4 +1,6 @@
-﻿namespace View
+﻿using System;
+
+namespace View
 {
     partial class AddFigureForm
     {
@@ -61,9 +63,9 @@
             this.FigureChoiceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FigureChoiceComboBox.FormattingEnabled = true;
             this.FigureChoiceComboBox.Items.AddRange(new object[] {
-            "Прямоугольник",
-            "Треугольник",
-            "Круг"});
+                "Прямоугольник",
+                "Треугольник",
+                "Круг"});
             this.FigureChoiceComboBox.Location = new System.Drawing.Point(10, 22);
             this.FigureChoiceComboBox.Name = "FigureChoiceComboBox";
             this.FigureChoiceComboBox.Size = new System.Drawing.Size(180, 21);

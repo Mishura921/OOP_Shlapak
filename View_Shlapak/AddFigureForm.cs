@@ -6,7 +6,7 @@ using Model;
 namespace View
 {
     /// <summary>
-    /// Класс, описывающий форму добавления
+    /// Класс, описывающий форму добавления фигур
     /// </summary>
     public partial class AddFigureForm : Form
     {
@@ -20,7 +20,52 @@ namespace View
         /// </summary>
         public FigureBase FigureData => _figure;
 
+        /// <summary>
+        /// Тип выбранной фигуры
+        /// </summary>
         private FigureType _figureType;
+
+        // ========== КОНСТАНТЫ ДЛЯ МАКЕТА ФОРМЫ ==========
+
+        /// <summary>
+        /// Минимальное заполненное значение для активации кнопки
+        /// </summary>
+        private const int MINIMUM_TEXT_LENGTH = 0;
+
+        /// <summary>
+        /// Базовая высота GroupBox (верхний отступ + нижний отступ)
+        /// </summary>
+        private const int GROUPBOX_BASE_HEIGHT = 15;
+
+        /// <summary>
+        /// Высота одного элемента управления в GroupBox
+        /// </summary>
+        private const int CONTROL_HEIGHT = 25;
+
+        /// <summary>
+        /// Отступ между GroupBox и кнопками
+        /// </summary>
+        private const int BUTTON_MARGIN_TOP = 5;
+
+        /// <summary>
+        /// Отступ снизу формы
+        /// </summary>
+        private const int FORM_BOTTOM_MARGIN = 50;
+
+        /// <summary>
+        /// Отступ кнопки "ОК" от левого края
+        /// </summary>
+        private const int OK_BUTTON_LEFT = 12;
+
+        /// <summary>
+        /// Отступ кнопки "Закрыть" от левого края
+        /// </summary>
+        private const int CLOSE_BUTTON_LEFT = 122;
+
+        /// <summary>
+        /// Высота кнопок
+        /// </summary>
+        private const int BUTTON_HEIGHT = 30;
 
         /// <summary>
         /// Инициализация формы
@@ -55,7 +100,7 @@ namespace View
         /// <summary>
         /// Установка видимых TextBox в зависимости от выбранной фигуры
         /// </summary>
-        /// <param name="figure">Фигура</param>
+        /// <param name="figureType">Тип фигуры</param>
         private void MakeVisible(FigureType figureType)
         {
             HideAllControls();
@@ -63,39 +108,39 @@ namespace View
 
             switch (figureType)
             {
-                case FigureType.Rectangular:
-                {
-                    LengthTextbox.Visible = true;
-                    LengthLabel.Visible = true;
-                    WidthTextbox.Visible = true;
-                    WidthLabel.Visible = true;
-                    LengthLabel.Text = "Длина:";
-                    WidthLabel.Text = "Ширина:";
-                    visibleControlsCount = 2;
-                    break;
-                }
+                case FigureType.Rectangle:
+                    {
+                        LengthTextbox.Visible = true;
+                        LengthLabel.Visible = true;
+                        WidthTextbox.Visible = true;
+                        WidthLabel.Visible = true;
+                        LengthLabel.Text = "Длина:";
+                        WidthLabel.Text = "Ширина:";
+                        visibleControlsCount = 2;
+                        break;
+                    }
                 case FigureType.Triangle:
-                {
-                    LengthTextbox.Visible = true;
-                    LengthLabel.Visible = true;
-                    HeightTextbox.Visible = true;
-                    HeightLabel.Visible = true;
-                    LengthLabel.Text = "Основание:";
-                    HeightLabel.Text = "Высота:";
-                    visibleControlsCount = 2;
-                    break;
-                }
+                    {
+                        LengthTextbox.Visible = true;
+                        LengthLabel.Visible = true;
+                        HeightTextbox.Visible = true;
+                        HeightLabel.Visible = true;
+                        LengthLabel.Text = "Основание:";
+                        HeightLabel.Text = "Высота:";
+                        visibleControlsCount = 2;
+                        break;
+                    }
                 case FigureType.Circle:
-                {
-                    RadiusTextbox.Visible = true;
-                    RadiusLabel.Visible = true;
-                    visibleControlsCount = 1;
-                    break;
-                }
+                    {
+                        RadiusTextbox.Visible = true;
+                        RadiusLabel.Visible = true;
+                        visibleControlsCount = 1;
+                        break;
+                    }
                 default:
-                {
-                    throw new ArgumentException("Вы не выбрали тип фигуры...");
-                }
+                    {
+                        throw new ArgumentException("Вы не выбрали тип фигуры...");
+                    }
             }
 
             ResizeGroupBox(visibleControlsCount);
@@ -108,11 +153,8 @@ namespace View
         /// <param name="controlsCount">Количество видимых элементов</param>
         private void ResizeGroupBox(int controlsCount)
         {
-            //TODO: const
-            int baseHeight = 15;
-            int controlHeight = 25;
-
-            int newHeight = baseHeight + (controlsCount * controlHeight);
+            //TODO: const+
+            int newHeight = GROUPBOX_BASE_HEIGHT + (controlsCount * CONTROL_HEIGHT);
             groupBox2.Height = newHeight;
         }
 
@@ -121,13 +163,15 @@ namespace View
         /// </summary>
         private void MoveButtons()
         {
-            //TODO: const?
-            int buttonY = groupBox2.Top + groupBox2.Height + 5;
+            //TODO: const+
+            int buttonY = groupBox2.Top + groupBox2.Height + BUTTON_MARGIN_TOP;
 
-            OkAddFigureButton.Location = new System.Drawing.Point(12, buttonY);
-            CloseFormButton.Location = new System.Drawing.Point(122, buttonY);
+            OkAddFigureButton.Location = new System.Drawing.Point
+                (OK_BUTTON_LEFT, buttonY);
+            CloseFormButton.Location = new System.Drawing.Point
+                (CLOSE_BUTTON_LEFT, buttonY);
 
-            this.Height = buttonY + OkAddFigureButton.Height + 50;
+            this.Height = buttonY + BUTTON_HEIGHT + FORM_BOTTOM_MARGIN;
         }
 
         /// <summary>
@@ -137,28 +181,32 @@ namespace View
         /// <param name="e">Аргументы события</param>
         private void FigureChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (FigureChoiceComboBox.SelectedIndex)
+            string selectedText = FigureChoiceComboBox.SelectedItem?.ToString();
+
+            switch (selectedText)
             {
-                case 0:
-                {
-                    _figureType = FigureType.Rectangular;
-                    MakeVisible(_figure);
-                    break;
-                }
-                case 1:
-                {
-                    _figureType = FigureType.Triangle;
-                    MakeVisible(_figure);
-                    break;
-                }
-                case 2:
-                {
-                    _figureType = FigureType.Circle;
-                    MakeVisible(_figure);
-                    break;
-                }
+                case "Прямоугольник":
+                    {
+                        _figureType = FigureType.Rectangle;
+                        break;
+                    }
+                case "Треугольник":
+                    {
+                        _figureType = FigureType.Triangle;
+                        break;
+                    }
+                case "Круг":
+                    {
+                        _figureType = FigureType.Circle;
+                        break;
+                    }
+                default:
+                    {
+                        return;
+                    }
             }
 
+            MakeVisible(_figureType);
             ClearAllFields();
             OkAddFigureButton.Enabled = false;
         }
@@ -190,9 +238,9 @@ namespace View
             var newRectangle = new Rectangle();
             var actions = new List<Action>()
             {
-                new Action(() => newRectangle.Length = 
+                new Action(() => newRectangle.Length =
                     Convert.ToDouble(LengthTextbox.Text)),
-                new Action(() => newRectangle.Width = 
+                new Action(() => newRectangle.Width =
                     Convert.ToDouble(WidthTextbox.Text))
             };
             actions.ForEach(SetValue);
@@ -207,9 +255,9 @@ namespace View
             var newTriangle = new Triangle();
             var actions = new List<Action>()
             {
-                new Action(() => newTriangle.Length = 
+                new Action(() => newTriangle.Length =
                     Convert.ToDouble(LengthTextbox.Text)),
-                new Action(() => newTriangle.Height = 
+                new Action(() => newTriangle.Height =
                     Convert.ToDouble(HeightTextbox.Text))
             };
             actions.ForEach(SetValue);
@@ -224,7 +272,7 @@ namespace View
             var newCircle = new Circle();
             var actions = new List<Action>()
             {
-                new Action(() => newCircle.Radius = 
+                new Action(() => newCircle.Radius =
                     Convert.ToDouble(RadiusTextbox.Text))
             };
             actions.ForEach(SetValue);
@@ -234,26 +282,26 @@ namespace View
         /// <summary>
         /// Ввод данных о фигурах
         /// </summary>
-        private FigureBase InsertData(FigureBase figure)
+        private FigureBase InsertData()
         {
-            switch (figure)
+            switch (_figureType)
             {
-                case Rectangle _:
-                {
-                    return GetNewRectangle();
-                }
-                case Triangle _:
-                {
-                    return GetNewTriangle();
-                }
-                case Circle _:
-                {
-                    return GetNewCircle();
-                }
+                case FigureType.Rectangle:
+                    {
+                        return GetNewRectangle();
+                    }
+                case FigureType.Triangle:
+                    {
+                        return GetNewTriangle();
+                    }
+                case FigureType.Circle:
+                    {
+                        return GetNewCircle();
+                    }
                 default:
-                {
-                    throw new ArgumentException("Такой фигуры не существует.");
-                }
+                    {
+                        throw new ArgumentException("Неизвестный тип фигуры.");
+                    }
             }
         }
 
@@ -264,7 +312,7 @@ namespace View
         {
             try
             {
-                _figure = InsertData(_figure);
+                _figure = InsertData();
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -288,7 +336,7 @@ namespace View
         private void NumericTextboxKeyPress(object sender, KeyPressEventArgs e)
         {
             if (double.TryParse(((TextBox)sender).Text + e.KeyChar, out _)
-                || e.KeyChar == (char)Keys.Back) 
+                || e.KeyChar == (char)Keys.Back)
                 return;
         }
 
@@ -297,33 +345,33 @@ namespace View
         /// </summary>
         private void ShowOKButton(object sender, EventArgs e)
         {
-            switch (FigureChoiceComboBox.SelectedIndex)
+            switch (_figureType)
             {
-                case 0:
-                {
-                    OkAddFigureButton.Enabled =
-                        LengthTextbox.Text.Length > 0 &&
-                        WidthTextbox.Text.Length > 0;
-                    break;
-                }
-                case 1:
-                {
-                    OkAddFigureButton.Enabled =
-                        LengthTextbox.Text.Length > 0 &&
-                        HeightTextbox.Text.Length > 0;
-                    break;
-                }
-                case 2:
-                {
-                    OkAddFigureButton.Enabled =
-                        RadiusTextbox.Text.Length > 0;
-                    break;
-                }
+                case FigureType.Rectangle:
+                    {
+                        OkAddFigureButton.Enabled =
+                            LengthTextbox.Text.Length > MINIMUM_TEXT_LENGTH &&
+                            WidthTextbox.Text.Length > MINIMUM_TEXT_LENGTH;
+                        break;
+                    }
+                case FigureType.Triangle:
+                    {
+                        OkAddFigureButton.Enabled =
+                            LengthTextbox.Text.Length > MINIMUM_TEXT_LENGTH &&
+                            HeightTextbox.Text.Length > MINIMUM_TEXT_LENGTH;
+                        break;
+                    }
+                case FigureType.Circle:
+                    {
+                        OkAddFigureButton.Enabled =
+                            RadiusTextbox.Text.Length > MINIMUM_TEXT_LENGTH;
+                        break;
+                    }
                 default:
-                {
-                    OkAddFigureButton.Enabled = false;
-                    break;
-                }
+                    {
+                        OkAddFigureButton.Enabled = false;
+                        break;
+                    }
             }
         }
 
