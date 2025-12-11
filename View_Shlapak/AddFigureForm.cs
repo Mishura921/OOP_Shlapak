@@ -25,8 +25,6 @@ namespace View
         /// </summary>
         private FigureType _figureType;
 
-        // ========== КОНСТАНТЫ ДЛЯ МАКЕТА ФОРМЫ ==========
-
         /// <summary>
         /// Минимальное заполненное значение для активации кнопки
         /// </summary>

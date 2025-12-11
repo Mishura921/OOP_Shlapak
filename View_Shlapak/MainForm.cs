@@ -110,6 +110,12 @@ namespace View
                 var figureToRemove = _listForSearch[selectedIndex];
                 _listForSearch.RemoveAt(selectedIndex);
                 _figureList.Remove(figureToRemove);
+
+                // Если после удаления фильтрованный список пуст - сбрасываем фильтр
+                if (_listForSearch.Count == 0)
+                {
+                    DropFilterButton_Click(this, EventArgs.Empty);
+                }
             }
             else
             {
@@ -267,8 +273,8 @@ namespace View
         private void DeleteAllFugureButton_Click(object sender, EventArgs e)
         {
             // Определяем, с каким списком работаем
-            var currentList = (DataFigureView.DataSource 
-                == _listForSearch) ?_listForSearch : _figureList;
+            var currentList = (DataFigureView.DataSource
+                == _listForSearch) ? _listForSearch : _figureList;
 
             if (currentList.Count == 0)
             {
@@ -279,7 +285,7 @@ namespace View
             }
 
             string message;
-            if (DataFigureView.DataSource == _listForSearch 
+            if (DataFigureView.DataSource == _listForSearch
                 && _listForSearch.Count > 0)
             {
                 message = "Вы уверены, что хотите удалить все " +
@@ -299,7 +305,7 @@ namespace View
 
             if (result == DialogResult.Yes)
             {
-                if (DataFigureView.DataSource == _listForSearch 
+                if (DataFigureView.DataSource == _listForSearch
                     && _listForSearch.Count > 0)
                 {
                     foreach (var figure in _listForSearch)
@@ -308,6 +314,13 @@ namespace View
                     }
                     _listForSearch.Clear();
                     CreateTable(_listForSearch, DataFigureView);
+
+                    // Если после удаления отфильтрованный список пуст,
+                    // автоматически сбрасываем фильтр
+                    if (_listForSearch.Count == 0)
+                    {
+                        DropFilterButton_Click(this, EventArgs.Empty);
+                    }
                 }
                 else
                 {
@@ -315,10 +328,8 @@ namespace View
                     _listForSearch.Clear();
                     DataFigureView.DataSource = null;
                     CreateTable(_figureList, DataFigureView);
-                }
-                
-                if (_figureList.Count == 0)
-                {
+
+                    // Сбрасываем фильтр при очистке основного списка
                     DropFilterButton_Click(this, EventArgs.Empty);
                 }
 
